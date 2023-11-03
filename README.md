@@ -16,7 +16,7 @@ Filtering Ld1Svs282_WG_nucmer.snps to extract only SNPs (no insertion, no deleti
 
 tail -n +6 Ld1Svs282_WG_nucmer.snps | awk '{if($2!=".") print}' | awk '{if($3!=".") print $1"\t"$14}' > SNP_density.tsv
 
-Importing the dataset into R to plot the density
+Importing the dataset into R to plot the density for all chromosomes
 
 #!/usr/bin/env Rscript
 
