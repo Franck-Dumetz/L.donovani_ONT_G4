@@ -8,6 +8,7 @@ samtools index Ld1S_282aligned.bam
 
 * Genome assembly strategies
    * Using Flye
+
 export PATH=/usr/local/packages/flye-2.9/bin:$PATH  
 /usr/local/packages/flye-2.9/bin/flye --pacbio-hifi Ld1S2D_DNA_filtered.ccs.fastq.gz --genome-size 33m --out-dir /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S2D_genome/Flye -t 16
 
