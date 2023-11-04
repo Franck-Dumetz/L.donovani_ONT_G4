@@ -30,7 +30,7 @@ export PATH=/usr/local/packages/flye-2.9/bin:$PATH
 
 * SNP density
 
-    ** MUMmer SNP comparition
+* MUMmer SNP comparition
 Using nucmer to identify SNP and position
 
 /usr/local/packages/mummer-3.23/nucmer -p Ld1Svs282_WG_nucmer --mum <PATH-TO-REF-GENOME>/TriTrypDB-63_LdonovaniBPK282A1_Genome.fasta <PATH-TO-QUERY_GENOME>/Ld1S_assembly_final.fasta
@@ -39,11 +39,11 @@ Using nucmer to identify SNP and position
 
 /usr/local/packages/mummer-3.23/show-snps -Clr Ld1Svs282_WG_nucmer.filter > Ld1Svs282_WG_nucmer.snps
 
-   ** Filtering Ld1Svs282_WG_nucmer.snps to extract only SNPs (no insertion, no deletion)
+* Filtering Ld1Svs282_WG_nucmer.snps to extract only SNPs (no insertion, no deletion)
 
 tail -n +6 Ld1Svs282_WG_nucmer.snps | awk '{if($2!=".") print}' | awk '{if($3!=".") print $1"\t"$14}' > SNP_density.tsv
 
-   ** Importing the dataset into R to plot the density for all chromosomes
+* Importing the dataset into R to plot the density for all chromosomes
 
 #!/usr/bin/env Rscript
 
