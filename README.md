@@ -2,7 +2,7 @@
 Making genome assembly of Ld1S2D and further comparison with BPK282A2 (TritrypDB v63)
 
 * mapping CCS reads to LdBPK282A2 using minimap2
-* 
+
 minimap2 -ax map-hifi -t 2 <PATH-TO-REF-GENOME>/TriTrypDB-63_LdonovaniBPK282A1_Genome.fasta <PATH-TO_CCS_READS>/PACBIO_DATA/EDS10_20230707_S64411e_PL100299966A-1_A01_bc2088-bc2088.ccs.fastq.gz > Ld1S_282aligned.sam
 samtools view -bhF 2308 Ld1S_282aligned.sam | samtools sort -o Ld1S_282aligned.bam
 samtools index Ld1S_282aligned.bam
