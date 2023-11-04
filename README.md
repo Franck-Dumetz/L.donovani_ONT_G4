@@ -7,15 +7,15 @@ samtools view -bhF 2308 Ld1S_282aligned.sam | samtools sort -o Ld1S_282aligned.b
 samtools index Ld1S_282aligned.bam
 
 * Genome assembly strategies
-   ** Using Flye
+   * Using Flye
 export PATH=/usr/local/packages/flye-2.9/bin:$PATH  
 /usr/local/packages/flye-2.9/bin/flye --pacbio-hifi Ld1S2D_DNA_filtered.ccs.fastq.gz --genome-size 33m --out-dir /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S2D_genome/Flye -t 16
 
-   ** Using Canu
+   * Using Canu
 
 
 * Checking genome assembly quality compared to LdBPK282A2
-   ** using MUMmer
+   * using MUMmer
 
 /usr/local/packages/mummer-3.23/nucmer -p Ld1Svs282_WG_nucmer --mum <PATH-TO-REF-GENOME>/TriTrypDB-63_LdonovaniBPK282A1_Genome.fasta <PATH-TO-QUERY_GENOME>/Ld1S_assembly_final.fasta
 /usr/local/packages/mummer-3.23/mummerplot --png --filter --color --layout --prefix=Ld1Svs282_WG_nucmer Ld1Svs282_WG_nucmer.delta -R <PATH-TO-REF-GENOME>/TriTrypDB-63_LdonovaniBPK282A1_Genome.fasta -Q <PATH-TO-QUERY_GENOME>/Ld1S_assembly_final.fasta
