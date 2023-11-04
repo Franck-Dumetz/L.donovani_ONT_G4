@@ -22,6 +22,7 @@ export PATH=/usr/local/packages/flye-2.9/bin:$PATH
 /usr/local/packages/mummer-3.23/mummerplot --png --filter --color --layout --prefix=Ld1Svs282_WG_nucmer Ld1Svs282_WG_nucmer.delta -R <PATH-TO-REF-GENOME>/TriTrypDB-63_LdonovaniBPK282A1_Genome.fasta -Q <PATH-TO-QUERY_GENOME>/Ld1S_assembly_final.fasta
 
 * Rearrangement
+
 /usr/local/packages/mummer-3.23/show-diff Ld1Svs282_WG_nucmer.delta > Ld1Svs282_WG_nucmer.rearrangement
 
 * Repeats
@@ -32,6 +33,7 @@ export PATH=/usr/local/packages/flye-2.9/bin:$PATH
 * SNP density
 
 * MUMmer SNP comparition
+
 Using nucmer to identify SNP and position
 
 /usr/local/packages/mummer-3.23/nucmer -p Ld1Svs282_WG_nucmer --mum <PATH-TO-REF-GENOME>/TriTrypDB-63_LdonovaniBPK282A1_Genome.fasta <PATH-TO-QUERY_GENOME>/Ld1S_assembly_final.fasta
