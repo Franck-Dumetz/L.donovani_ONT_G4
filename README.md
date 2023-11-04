@@ -1,6 +1,10 @@
 # Ld1S_genome
 Making genome assembly of Ld1S2D and further comparison with BPK282A2 (TritrypDB v63)
 
+* mapping CCS reads to LdBPK282A2 using minimap2
+minimap2 -ax map-hifi -t 2 <PATH-TO-REF-GENOME>/TriTrypDB-63_LdonovaniBPK282A1_Genome.fasta <PATH-TO_CCS_READS>/PACBIO_DATA/EDS10_20230707_S64411e_PL100299966A-1_A01_bc2088-bc2088.ccs.fastq.gz > Ld1S_282aligned.sam
+samtools view -bhF 2308 Ld1S_282aligned.sam | samtools sort -o Ld1S_282aligned.bam
+samtools index Ld1S_282aligned.bam
 
 * Genome assembly strategies
    ** Using Flye
@@ -63,15 +67,15 @@ ggplot(aes(Position, group = Chr), data=SNP_density) +
 /usr/local/packages/trnascan-se-2.0.3/bin/eufindtRNA -r <PATH>/Ld1S_assembly_final.fasta > Ld1S_tRNA_strict.csv 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 * snoRNA detection using snoReport2.0
+/usr/local/packages/guppy-6.4.2_gpu/bin/guppy_basecaller -x "cuda:0" --input_path "$fast5_dir" --save_path "$output_dir" --config rna_r9.4.1_70bps_hac.cfg --min_qscore 7 --records_per_fastq 10000000 --gpu_runners_per_device 8 --num_callers 1 (--trim-strategy none)![image](https://github.com/Franck-Dumetz/Ld1S_genome/assets/105318680/f789c1a7-3ea3-48b9-8fad-c98e7b5572d3)
 
 export SNOREPORTMODELS="/usr/local/packages/snoreport-2.0/models"   #### make  sure the "models" folder is readable or it won't work
 /usr/local/packages/snoreport-2.0/snoreport_2 -i /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_genome/Flye_scaffold/Ld1S_assembly_final.fasta -CD -HACA -o Ld1S_snoRNA --PS
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 * Using BUSCO
 
 export PATH="/usr/local/packages/augustus-3.4.0/bin:$PATH"
@@ -80,7 +84,26 @@ export AUGUSTUS_CONFIG_PATH="/usr/local/packages/augustus-3.4.0/configs/"
 export PATH="/usr/local/packages/metaeuk-6-a5d39d9/bin:$PATH"
 busco -m genome -i <PATH-TO-QUERY_GENOME>/Ld1S_assembly_final.fasta --auto-lineage-euk --long -o busco  -f
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+# Using the ONT reads to refine trasncripts annoatation
 
+* Basecalling fast5 files (all fast5 files were basecalled using Guppy on an Nvidia GPU)
 
+/usr/local/packages/guppy-6.4.2_gpu/bin/guppy_basecaller -x "cuda:0" --input_path "$fast5_dir" --save_path "$output_dir" --config rna_r9.4.1_70bps_hac.cfg --min_qscore 7 --records_per_fastq 10000000 --gpu_runners_per_device 8 --num_callers 1 (--trim-strategy none)
 
+* read alignment using minimap.sh script
+
+fastq_dir=/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_ONT/Annotation/282_aligned
+
+fastq_file1=/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_ONT/Annotation/Ld_3ONT.fastq.gz
+
+sam_file1=Ld_3ONT_282.sam
+
+ref_file=/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_genome/Flye_scaffold/Ld1S_assembly_final.fasta
+
+minimap2 -ax map-ont -t 2 "$ref_file" "$fastq_file1" > "$sam_file1"
+
+samtools view -bhF 2308 Ld_3ONT_282.sam | samtools sort -o Ld_3ONT_282.bam
+samtools index Ld_3ONT_282.bam
