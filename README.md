@@ -73,9 +73,11 @@ ggplot(aes(Position, group = Chr), data=SNP_density) +
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 * snoRNA detection using snoReport2.0
+
 /usr/local/packages/guppy-6.4.2_gpu/bin/guppy_basecaller -x "cuda:0" --input_path "$fast5_dir" --save_path "$output_dir" --config rna_r9.4.1_70bps_hac.cfg --min_qscore 7 --records_per_fastq 10000000 --gpu_runners_per_device 8 --num_callers 1 (--trim-strategy none)
 
 export SNOREPORTMODELS="/usr/local/packages/snoreport-2.0/models"   #### make  sure the "models" folder is readable or it won't work
+
 /usr/local/packages/snoreport-2.0/snoreport_2 -i /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_genome/Flye_scaffold/Ld1S_assembly_final.fasta -CD -HACA -o Ld1S_snoRNA --PS
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -83,9 +85,13 @@ export SNOREPORTMODELS="/usr/local/packages/snoreport-2.0/models"   #### make  s
 * Using BUSCO
 
 export PATH="/usr/local/packages/augustus-3.4.0/bin:$PATH"
+
 export PATH="/usr/local/packages/augustus-3.4.0/scripts:$PATH"
+
 export AUGUSTUS_CONFIG_PATH="/usr/local/packages/augustus-3.4.0/configs/"
+
 export PATH="/usr/local/packages/metaeuk-6-a5d39d9/bin:$PATH"
+
 busco -m genome -i <PATH-TO-QUERY_GENOME>/Ld1S_assembly_final.fasta --auto-lineage-euk --long -o busco  -f
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -110,4 +116,5 @@ ref_file=/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_genome/Flye_scaf
 minimap2 -ax map-ont -t 2 "$ref_file" "$fastq_file1" > "$sam_file1"
 
 samtools view -bhF 2308 Ld_3ONT_282.sam | samtools sort -o Ld_3ONT_282.bam
+
 samtools index Ld_3ONT_282.bam
