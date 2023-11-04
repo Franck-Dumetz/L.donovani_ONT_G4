@@ -87,7 +87,7 @@ busco -m genome -i <PATH-TO-QUERY_GENOME>/Ld1S_assembly_final.fasta --auto-linea
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Using the ONT reads to refine trasncripts annoatation
+# Using the ONT reads to refine trasncripts annotation
 
 * Basecalling fast5 files (all fast5 files were basecalled using Guppy on an Nvidia GPU)
 
