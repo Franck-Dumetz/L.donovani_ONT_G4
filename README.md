@@ -70,7 +70,7 @@ ggplot(aes(Position, group = Chr), data=SNP_density) +
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 * snoRNA detection using snoReport2.0
-/usr/local/packages/guppy-6.4.2_gpu/bin/guppy_basecaller -x "cuda:0" --input_path "$fast5_dir" --save_path "$output_dir" --config rna_r9.4.1_70bps_hac.cfg --min_qscore 7 --records_per_fastq 10000000 --gpu_runners_per_device 8 --num_callers 1 (--trim-strategy none)![image](https://github.com/Franck-Dumetz/Ld1S_genome/assets/105318680/f789c1a7-3ea3-48b9-8fad-c98e7b5572d3)
+/usr/local/packages/guppy-6.4.2_gpu/bin/guppy_basecaller -x "cuda:0" --input_path "$fast5_dir" --save_path "$output_dir" --config rna_r9.4.1_70bps_hac.cfg --min_qscore 7 --records_per_fastq 10000000 --gpu_runners_per_device 8 --num_callers 1 (--trim-strategy none)
 
 export SNOREPORTMODELS="/usr/local/packages/snoreport-2.0/models"   #### make  sure the "models" folder is readable or it won't work
 /usr/local/packages/snoreport-2.0/snoreport_2 -i /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_genome/Flye_scaffold/Ld1S_assembly_final.fasta -CD -HACA -o Ld1S_snoRNA --PS
