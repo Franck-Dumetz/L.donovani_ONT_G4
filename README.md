@@ -11,10 +11,11 @@ samtools index Ld1S_282aligned.bam
    * Using Flye
 
 export PATH=/usr/local/packages/flye-2.9/bin:$PATH  
-/usr/local/packages/flye-2.9/bin/flye --pacbio-hifi Ld1S2D_DNA_filtered.ccs.fastq.gz --genome-size 33m --out-dir /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S2D_genome/Flye -t 16
+/usr/local/packages/flye-2.9/bin/flye --pacbio-hifi <PATH-TO_CCS_READS>/PACBIO_DATA/EDS10_20230707_S64411e_PL100299966A-1_A01_bc2088-bc2088.ccs.fastq.gz --genome-size 33m --out-dir /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S2D_genome/Flye -t 16
 
    * Using Canu
 
+/usr/local/packages/canu-2.2.1/bin/canu -pacbio-hifi <PATH-TO_CCS_READS>/PACBIO_DATA/EDS10_20230707_S64411e_PL100299966A-1_A01_bc2088-bc2088.ccs.fastq.gz
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 * Checking genome assembly quality compared to LdBPK282A2
