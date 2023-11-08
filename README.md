@@ -16,10 +16,10 @@ export PATH=/usr/local/packages/flye-2.9/bin:$PATH
    * Using Canu
 
 /usr/local/packages/canu-2.2.1/bin/canu -pacbio-hifi <PATH-TO_CCS_READS>/PACBIO_DATA/EDS10_20230707_S64411e_PL100299966A-1_A01_bc2088-bc2088.ccs.fastq.gz
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 * Checking genome assembly quality compared to LdBPK282A2
-   * using MUMmer
 
 /usr/local/packages/mummer-3.23/nucmer -p Ld1Svs282_WG_nucmer --mum <PATH-TO-REF-GENOME>/TriTrypDB-63_LdonovaniBPK282A1_Genome.fasta <PATH-TO-QUERY_GENOME>/Ld1S_assembly_final.fasta
 
