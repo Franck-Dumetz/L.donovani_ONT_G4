@@ -1,0 +1,79 @@
+#!/usr/bin/perl
+
+### finding the monocistron from transdecoder 
+### requires a stringtie outop
+
+use strict;
+use warnings;
+
+
+open (CDS, "/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/Ld1S_Transdecoder_completeORF_stranded2.cds" |);
+
+open (OUT, ">/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/Ld1S_transdecoder_monocistron_coord.txt" |);
+
+
+my %stringtie;              # $stringtie{"Ld1S.000010.1"} = No of ORFs
+
+my %cds_name;               # $cds_name{"Ld1S.000010.1.p1"} = "Ld1S.000010.1";
+my %cds_length;
+my %cds_start;
+my %cds_end;
+
+
+while (<CDS>) {
+    chomp;
+    my $line = $_;
+    my @cds_line = split /\s+/, $line;
+    
+    $stringtie{"$cds_line[0]"}++;
+    my $cds_id = $cds_line[1];
+    $cds_name{$cds_id} = $cds_line[0];
+    $cds_length{$cds_id} = $cds_line[8];
+    $cds_start{$cds_id} = $cds_line[10];
+    $cds_end{$cds_id} = $cds_line[11];
+}
+close CDS;
+
+my $nOneORF = 0;               # 1 ORF per stringtie
+my $nLong = 0;
+my $nNonOver = 0;              # +1 ORF nonoverlapping
+foreach my $s (keys%stringtie) {            #loop sur les transcripts
+    if ($stringtie{$s} == 1) {
+	print OUT "$s\n";
+	$nOneORF++;
+    }
+    else {
+	$nLong++;
+	my $test = 0;
+	my $longest = "";
+	my $max = 0;
+	foreach my $o (keys%cds_name) {
+	    if ($cds_name{$o} eq $s) {
+		`if ($cds_length{$o} > $max) {
+		    $max = $cds_length{$o};
+		    $longest = $o;
+		}`
+	    }
+	}
+	foreach my $o (keys%cds_name) {
+	    if (($cds_name{$o} eq $s)&&($o ne $longest)) {
+		if ((($cds_start{$o}<$cds_start{$longest})&&($cds_end{$o} > $cds_start{$longest}))||(($cds_start{$o}<$cds_end{$longest})&&($cds_end{$o} > $cds_end{$longest}))) {}
+		else {
+		    $nNonOver++;
+		    $test++;
+		}
+	    }
+	}
+#	print STDERR "$s\t$stringtie{$s}\t$test\n";
+	if ($test == 0) {
+	    $nOneORF++;
+	    print OUT "$s\t$longest\n";
+	}
+    }
+}
+
+print STDERR "$nOneORF one ORF\n$nLong longest\n$nNonOver nonoverlapping the longest\n";
+    
+close OUT;
+
+exit;
