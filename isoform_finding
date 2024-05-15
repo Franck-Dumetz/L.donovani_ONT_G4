@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 ### finding isoforms that are at least 10% of the overall coverage OR a minimum of 5 reads per CDS.
-### The isoform that are detected will have at least 100 nucleotides difference in 3' or in 5' UTR lenght (or both)
+### The isoform that are detected will have at least 100 nucleotides difference in 3' or in 5' UTR length (or both)
 
 use strict;
 use warnings;
