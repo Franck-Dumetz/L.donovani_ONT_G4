@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 ### finding the monocistron from transdecoder 
-### requires a stringtie outop
+### requires a stringtie output
 
 use strict;
 use warnings;
@@ -13,7 +13,6 @@ open (OUT, ">/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Ste
 
 
 my %stringtie;              # $stringtie{"Ld1S.000010.1"} = No of ORFs
-
 my %cds_name;               # $cds_name{"Ld1S.000010.1.p1"} = "Ld1S.000010.1";
 my %cds_length;
 my %cds_start;
@@ -37,7 +36,7 @@ close CDS;
 my $nOneORF = 0;               # 1 ORF per stringtie
 my $nLong = 0;
 my $nNonOver = 0;              # +1 ORF nonoverlapping
-foreach my $s (keys%stringtie) {            #loop sur les transcripts
+foreach my $s (keys%stringtie) {            #loop for all transcripts
     if ($stringtie{$s} == 1) {
 	print OUT "$s\n";
 	$nOneORF++;
