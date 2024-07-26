@@ -20,6 +20,11 @@ export PATH=/usr/local/packages/flye-2.9/bin:$PATH
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 * Checking genome assembly quality compared to LdBPK282A2
+  * using quast
+
+/usr/local/packages/quast-5.2.0/quast.py -r /local/projects-t3/SerreDLab-3/fdumetz/Genomes/LdBPK282A2/TriTrypDB-63_LdonovaniBPK282A1_Genome.fasta -g /local/projects-t3/SerreDLab-3/fdumetz/Genomes/LdBPK282A2/TriTrypDB-63_LdonovaniBPK282A1.gff -o quast_282vsLd1S --min-contig 1000 -t 4 --gene-finding Ld1S_assembly_final.fasta
+
+  * using Mummer
 
 /usr/local/packages/mummer-3.23/nucmer -p Ld1Svs282_WG_nucmer --mum <PATH-TO-REF-GENOME>/TriTrypDB-63_LdonovaniBPK282A1_Genome.fasta <PATH-TO-QUERY_GENOME>/Ld1S_assembly_final.fasta
 
