@@ -15,7 +15,7 @@ export PATH=/usr/local/packages/flye-2.9/bin:$PATH
 
    * Using Canu
 
-/usr/local/packages/canu-2.2.1/bin/canu -pacbio-hifi /PACBIO_DATA/EDS10_20230707_S64411e_PL100299966A-1_A01_bc2088-bc2088.ccs.fastq.gz
+/usr/local/packages/canu-2.1.1/bin/canu -pacbio-hifi /PACBIO_DATA/EDS10_20230707_S64411e_PL100299966A-1_A01_bc2088-bc2088.ccs.fastq.gz
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
