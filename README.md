@@ -7,6 +7,7 @@ Table of content: <br />
 Software requirements: <br />
 • guppy-6.4.2 <br />
 • manimap2.1 <br />
+• ncbi-blast+-2.14.0 <br />
 
 ## Basecalling ONT reads and mapping to the genome
 
@@ -26,6 +27,15 @@ rm *.sam
 ## Isolating poly- and mono-cistrons with a splice leader
 
 ### Transfer of protein annoation from the reference genome into a new genome using gff
+
+```
+ref_prot=path_to_ref_genome/AnnotatedProteins.fasta
+assembly=path_to_genome_assembly
+
+/usr/local/packages/ncbi-blast+-2.14.0/bin/tblastn -query $ref_prot -subject $assembly -outfmt 6 -out ./tblastn.out
+```
+use [gff_from_blast.pl](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/gff_from_blast.pl) to transfer the tblastn result into a gff<br />
+
 
 ### Isolation of poly- and mono-cistronic
 
