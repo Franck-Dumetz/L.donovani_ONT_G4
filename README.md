@@ -12,10 +12,6 @@ Software requirements: <br />
 • minimap2.1 <br />
 
 
-
-
-Making genome assembly of Ld1S2D and further comparison with BPK282A2 (TritrypDB v63)
-
 ## mapping CCS reads to LdBPK282A2 using minimap2
 ```
 ref_gen=path_to_ref_genome
@@ -49,6 +45,7 @@ ccs_reads=path_to_ccs_reads
 ```
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Assembly quality assessment 
+Making genome assembly of Ld1S2D and further comparison with BPK282A2 (TritrypDB v63)
    ## Quast
 ```
 ref_gen=path_to_ref_genome
