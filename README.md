@@ -1,3 +1,9 @@
+table of content
+
+[ Genome Assembly Strategies] (https://github.com/Franck-Dumetz/Ld1S_genome/blob/main/README.md#genome-assembly-strategies)<br /> 
+
+
+
 # Ld1S_genome
 Making genome assembly of Ld1S2D and further comparison with BPK282A2 (TritrypDB v63)
 
