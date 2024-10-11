@@ -11,7 +11,7 @@ Software requirements: <br />
 
 on a GPU <br />
 [guppy.sh](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/guppy.sh) <br />
-from the pass folder
+from the "pass" folder
 ```
 cat *.fastq > experiment_name.fastq
 ```
