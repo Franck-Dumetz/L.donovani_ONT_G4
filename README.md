@@ -2,7 +2,7 @@
 
 Table of content: <br />
 [Basecalling ONT reads and mapping to the genome](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#basecalling-ont-reads-and-mapping-to-the-genome)<br />
-[Isolating poly- and monocistrons with a splice leader]() <br />
+[Isolating poly- and monocistrons with a splice leader](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#isolating-poly--and-mono-cistrons-with-a-splice-leader) <br />
 
 Software requirements: <br />
 • guppy-6.4.2 <br />
@@ -25,7 +25,9 @@ rm *.sam
 
 ## Isolating poly- and mono-cistrons with a splice leader
 
+### Transfer of protein annoation from the reference genome into a new genome using gff
 
+### Isolation of poly- and mono-cistronic
 
 
 
