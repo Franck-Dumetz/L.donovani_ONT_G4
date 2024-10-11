@@ -1,7 +1,7 @@
 # Ld1S_genome
 
 table of content
-[Long reads mapping with minimap2]
+[Long reads mapping with minimap2](https://github.com/Franck-Dumetz/Ld1S_genome/blob/main/README.md#mapping-ccs-reads-to-ldbpk282a2-using-minimap2)<br />
 [Genome Assembly Strategies](https://github.com/Franck-Dumetz/Ld1S_genome/blob/main/README.md#genome-assembly-strategies)<br /> 
 
 Software requirements: <br />
