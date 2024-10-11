@@ -6,10 +6,11 @@ table of content: <br />
 [Assembly quality assessment](https://github.com/Franck-Dumetz/Ld1S_genome/blob/main/README.md#assembly-quality-assessment)<br />
 
 Software requirements: <br />
-• canu2.1.1 <br />
-• flye2.9 <br />
+• canu-2.1.1 <br />
+• flye-2.9 <br />
 • quast-5.2.0 <br />
 • minimap2.1 <br />
+• mummer-3.23 <br />
 
 
 ## mapping CCS reads to LdBPK282A2 using minimap2
@@ -24,8 +25,8 @@ samtools view -bhF 2308 $out_sam | samtools sort -o $out_bam
 samtools index $out_bam
 ```
 
-## Genome assembly strategies
-   ### Using Flye
+##Genome assembly strategies
+   ###Using Flye
    
 ```
 export PATH=/usr/local/packages/flye-2.9/bin:$PATH
@@ -36,7 +37,7 @@ out_dir=path_to_out_directory
 /usr/local/packages/flye-2.9/bin/flye --pacbio-hifi $ccs_reads --genome-size 33m --out-dir $out_dir -t 16
 ```
 
-   ### Using Canu
+   ###Using Canu
 
 ```
 ccs_reads=path_to_ccs_reads
@@ -46,7 +47,7 @@ ccs_reads=path_to_ccs_reads
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Assembly quality assessment 
 Making genome assembly of Ld1S2D and further comparison with BPK282A2 (TritrypDB v63)
-   ## Quast
+   ##Quast
 ```
 ref_gen=path_to_ref_genome
 ref_gff=path_to_ref_gff
@@ -56,7 +57,7 @@ assembly=path_to_assembly
 /usr/local/packages/quast-5.2.0/quast.py -r $ref_gen -g $ref_gff -o $out_dir --min-contig 1000 -t 4 --gene-finding $assembly
 ```
 
-  * using Mummer
+   ##Mummer
 ```
 ref_gen=path_to_ref_genome
 assembly=path_to_assembly
@@ -65,11 +66,11 @@ assembly=path_to_assembly
 
 /usr/local/packages/mummer-3.23/mummerplot --png --filter --color --layout --prefix=Ld1Svs282_WG_nucmer Ld1Svs282_WG_nucmer.delta -R $ref_gen -Q $assembly
 ```
-* Rearrangement
+   ##Rearrangement
 ```
 /usr/local/packages/mummer-3.23/show-diff Ld1Svs282_WG_nucmer.delta > Ld1Svs282_WG_nucmer.rearrangement
 ```
-* Repeats
+   ##Repeats
 ```
 ref_gen=path_to_ref_genome
 assembly=path_to_assembly
@@ -78,24 +79,25 @@ assembly=path_to_assembly
 
 /usr/local/packages/mummer-3.23/show-coords -r Ld1Svs282_WG_nucmermax.delta > Ld1Svs282_WG_nucmermax.coords
 ```
-* SNP density
+##SNP density
 
-  * MUMmer SNP comparition
+MUMmer SNP comparition
+```
+ref_gen=path_to_ref_genome
+assembly=path_to_assembly
 
-Using nucmer to identify SNP and position
-
-/usr/local/packages/mummer-3.23/nucmer -mum <PATH-TO-REF-GENOME>/TriTrypDB-63_LdonovaniBPK282A1_Genome.fasta <PATH-TO-QUERY_GENOME>/Ld1S_assembly_final.fasta
+/usr/local/packages/mummer-3.23/nucmer -mum $ref_gen $assembly
 
 /usr/local/packages/mummer-3.23/delta-filter -r -q Ld1Svs282_WG_nucmer.delta > Ld1Svs282_WG_nucmer.filter
 
 /usr/local/packages/mummer-3.23/show-snps -Clr Ld1Svs282_WG_nucmer.filter > Ld1Svs282_WG_nucmer.snps
-
-* Filtering Ld1Svs282_WG_nucmer.snps to extract only SNPs (no insertion, no deletion)
-
+```
+Filtering Ld1Svs282_WG_nucmer.snps to extract only SNPs (no insertion, no deletion)
+```
 tail -n +6 Ld1Svs282_WG_nucmer.snps | awk '{if($2!=".") print}' | awk '{if($3!=".") print $1"\t"$14}' > SNP_density.tsv
-
-* Importing the dataset into R to plot the density for all chromosomes
-
+```
+Importing the dataset into R to plot the density for all chromosomes
+```
 #!/usr/bin/env Rscript
 
 library(ggplot2)
@@ -109,8 +111,8 @@ ggplot(aes(Position, group = Chr), data=SNP_density) +
     geom_histogram(binwidth = 5000) + 
     #facet_wrap(~Chr, scales = "free") +
     scale_x_continuous(labels = function(x) format(x, scientific = TRUE))
-
-* Local gene copy number variation using base converage
+```
+##Local gene copy number variation using base converage
 
   * base coverage using mpileup
 
