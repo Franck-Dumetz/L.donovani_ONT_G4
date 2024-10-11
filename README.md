@@ -25,8 +25,8 @@ samtools view -bhF 2308 $out_sam | samtools sort -o $out_bam
 samtools index $out_bam
 ```
 
-##Genome assembly strategies
-   ###Using Flye
+## Genome assembly strategies
+   ### Using Flye
    
 ```
 export PATH=/usr/local/packages/flye-2.9/bin:$PATH
@@ -37,7 +37,7 @@ out_dir=path_to_out_directory
 /usr/local/packages/flye-2.9/bin/flye --pacbio-hifi $ccs_reads --genome-size 33m --out-dir $out_dir -t 16
 ```
 
-   ###Using Canu
+   ### Using Canu
 
 ```
 ccs_reads=path_to_ccs_reads
@@ -47,7 +47,7 @@ ccs_reads=path_to_ccs_reads
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Assembly quality assessment 
 Making genome assembly of Ld1S2D and further comparison with BPK282A2 (TritrypDB v63)
-   ##Quast
+   ## Quast
 ```
 ref_gen=path_to_ref_genome
 ref_gff=path_to_ref_gff
@@ -57,7 +57,7 @@ assembly=path_to_assembly
 /usr/local/packages/quast-5.2.0/quast.py -r $ref_gen -g $ref_gff -o $out_dir --min-contig 1000 -t 4 --gene-finding $assembly
 ```
 
-   ##Mummer
+   ## Mummer
 ```
 ref_gen=path_to_ref_genome
 assembly=path_to_assembly
@@ -66,11 +66,11 @@ assembly=path_to_assembly
 
 /usr/local/packages/mummer-3.23/mummerplot --png --filter --color --layout --prefix=Ld1Svs282_WG_nucmer Ld1Svs282_WG_nucmer.delta -R $ref_gen -Q $assembly
 ```
-   ##Rearrangement
+   ## Rearrangement
 ```
 /usr/local/packages/mummer-3.23/show-diff Ld1Svs282_WG_nucmer.delta > Ld1Svs282_WG_nucmer.rearrangement
 ```
-   ##Repeats
+   ## Repeats
 ```
 ref_gen=path_to_ref_genome
 assembly=path_to_assembly
@@ -79,7 +79,7 @@ assembly=path_to_assembly
 
 /usr/local/packages/mummer-3.23/show-coords -r Ld1Svs282_WG_nucmermax.delta > Ld1Svs282_WG_nucmermax.coords
 ```
-##SNP density
+## SNP density
 
 MUMmer SNP comparition
 ```
@@ -112,7 +112,7 @@ ggplot(aes(Position, group = Chr), data=SNP_density) +
     #facet_wrap(~Chr, scales = "free") +
     scale_x_continuous(labels = function(x) format(x, scientific = TRUE))
 ```
-##Local gene copy number variation using base converage
+## Local gene copy number variation using base converage
 
   * base coverage using mpileup
 
