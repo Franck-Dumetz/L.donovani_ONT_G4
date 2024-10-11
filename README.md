@@ -184,7 +184,7 @@ output_dir=path_to_output_directory
 
 /usr/local/packages/guppy-6.4.2_gpu/bin/guppy_basecaller -x "cuda:0" --input_path "$fast5_dir" --save_path "$output_dir" --config rna_r9.4.1_70bps_hac.cfg --min_qscore 7 --records_per_fastq 10000000 --gpu_runners_per_device 8 --num_callers 1 (--trim-strategy none)
 ```
-### read alignment using minimap.sh script
+### Read alignment using minimap.sh script
 ```
 fastq_file=path_to_fastq_file
 sam_file=path_to_out_sam
@@ -199,3 +199,5 @@ samtools index $bam_file
 
 rm *.sam
 ```
+### Isolation of read with splice leader sequence in 5'
+
