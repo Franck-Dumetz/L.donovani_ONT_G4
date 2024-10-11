@@ -41,7 +41,7 @@ use [gff_from_blast.pl](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/b
 
 To isolate the polycistronic reads from the monocystronic ones, use the bam file previously generated and the gff generated above <br />
 use [finding_polycistron.pl](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/finding_polycistron) <br />
-
+it outputs 2 different sam files with the different reads and also the number for each category <br />
 
 
 
