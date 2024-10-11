@@ -47,7 +47,7 @@ ccs_reads=path_to_ccs_reads
 
 /usr/local/packages/canu-2.1.1/bin/canu -assemble -pacbio-hifi $ccs_reads
 ```
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ## Assembly quality assessment 
 Making genome assembly of Ld1S2D and further comparison with BPK282A2 (TritrypDB v63)
    ## Quast
@@ -117,18 +117,21 @@ ggplot(aes(Position, group = Chr), data=SNP_density) +
 ```
 ## Local gene copy number variation using base converage
 
-  * base coverage using mpileup
+   ### Base coverage using mpileup
+```   
+ref_gen=path_to_ref_genome
+BAM__RefAligned=path_to_BAM_file (from CCS reads aligned to the ref genome)
 
-samtools mpileup /local/projects-t3/SerreDLab-3/fdumetz/Genomes/LdBPK282A2/TriTrypDB-63_LdonovaniBPK282A1_Genome.fasta /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_genome/CCS_282_aligned/Ld1S2d_BPKaligned.bam
-
-  * extracting data from the mpileup file
-
+samtools mpileup $ref_gen $BAM__RefAligned
+```
+   ### Extracting data from the mpileup file
+```
 awk '{print $1"\t"$2"\t"$4}' Ld1Svs282_mpileup.txt > Ld1Svs282_PosCov.tsv
 
 grep Ld01_v1s1 Ld1Svs282_PosCov.tsv > Ld1_cov.tsv
-
-  * Plotting coverage chromosome per chromosome with R
-
+```
+   ### Plotting coverage chromosome per chromosome with R
+```
 library(ggplot2)
 library(dplyr)
 
@@ -148,8 +151,7 @@ ggplot(Ld1_cov_sum, aes(x=window, y=sum_cov)) +
   geom_line() +
   theme_classic() +
   geom_hline(yintercept = mean(Ld36_cov_sum$sum_cov), color="red")
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+```
 
 ### tRNA detection
 ```
@@ -157,7 +159,7 @@ assembly=path_to_assembly
 
 /usr/local/packages/trnascan-se-2.0.3/bin/eufindtRNA -r $assembly > Ld1S_tRNA_strict.csv 
 ```
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 ## BUSCO
 ```
