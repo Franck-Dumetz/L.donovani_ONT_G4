@@ -57,21 +57,27 @@ assembly=path_to_assembly
 ```
 
   * using Mummer
+```
+ref_gen=path_to_ref_genome
+assembly=path_to_assembly
 
-/usr/local/packages/mummer-3.23/nucmer -p Ld1Svs282_WG_nucmer --mum <PATH-TO-REF-GENOME>/TriTrypDB-63_LdonovaniBPK282A1_Genome.fasta <PATH-TO-QUERY_GENOME>/Ld1S_assembly_final.fasta
+/usr/local/packages/mummer-3.23/nucmer -p Ld1Svs282_WG_nucmer --mum $ref_gen $assembly
 
-/usr/local/packages/mummer-3.23/mummerplot --png --filter --color --layout --prefix=Ld1Svs282_WG_nucmer Ld1Svs282_WG_nucmer.delta -R <PATH-TO-REF-GENOME>/TriTrypDB-63_LdonovaniBPK282A1_Genome.fasta -Q <PATH-TO-QUERY_GENOME>/Ld1S_assembly_final.fasta
-
+/usr/local/packages/mummer-3.23/mummerplot --png --filter --color --layout --prefix=Ld1Svs282_WG_nucmer Ld1Svs282_WG_nucmer.delta -R $ref_gen -Q $assembly
+```
 * Rearrangement
-
+```
 /usr/local/packages/mummer-3.23/show-diff Ld1Svs282_WG_nucmer.delta > Ld1Svs282_WG_nucmer.rearrangement
-
+```
 * Repeats
+```
+ref_gen=path_to_ref_genome
+assembly=path_to_assembly
 
-/usr/local/packages/mummer-3.23/nucmer --maxmatch --nosimplify --prefix=Ld1Svs282_WG_nucmermax /local/projects-t3/SerreDLab-3/fdumetz/Genomes/LdBPK282A2/TriTrypDB-63_LdonovaniBPK282A1_Genome.fasta /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_genome/Flye_scaffold/Ld1S_assembly_final.fasta
+/usr/local/packages/mummer-3.23/nucmer --maxmatch --nosimplify --prefix=Ld1Svs282_WG_nucmermax $ref_gen $assembly
 
 /usr/local/packages/mummer-3.23/show-coords -r Ld1Svs282_WG_nucmermax.delta > Ld1Svs282_WG_nucmermax.coords
-
+```
 * SNP density
 
   * MUMmer SNP comparition
