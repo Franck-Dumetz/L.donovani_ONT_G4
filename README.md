@@ -1,7 +1,7 @@
 # _L. donovani_ UTR mapping (using ONT Direct RNA sequencing)
 
 Table of content: <br />
-[Basecalling ONT reads and mapping to the genome](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#basecalling-ont-reads)<br />
+[Basecalling ONT reads and mapping to the genome](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#basecalling-ont-reads-and-mapping-to-the-genome)<br />
 [Isolating poly- and monocistrons with a splice leader]() <br />
 
 Software requirements: <br />
