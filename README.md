@@ -6,8 +6,10 @@ table of content: <br />
 [Assembly quality assessment](https://github.com/Franck-Dumetz/Ld1S_genome/blob/main/README.md#assembly-quality-assessment)<br />
 
 Software requirements: <br />
+• busco-5.4.3
 • canu-2.1.1 <br />
 • flye-2.9 <br />
+• guppy-6.4.2 <br />
 • quast-5.2.0 <br />
 • minimap2.1 <br />
 • mummer-3.23 <br />
@@ -162,39 +164,43 @@ export SNOREPORTMODELS="/usr/local/packages/snoreport-2.0/models"   #### make  s
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-* Using BUSCO
-
+## BUSCO
+```
 export PATH="/usr/local/packages/augustus-3.4.0/bin:$PATH"
-
 export PATH="/usr/local/packages/augustus-3.4.0/scripts:$PATH"
-
 export AUGUSTUS_CONFIG_PATH="/usr/local/packages/augustus-3.4.0/configs/"
-
 export PATH="/usr/local/packages/metaeuk-6-a5d39d9/bin:$PATH"
 
-busco -m genome -i <PATH-TO-QUERY_GENOME>/Ld1S_assembly_final.fasta --auto-lineage-euk --long -o busco  -f
 
+assembly=path_to_assembly
+out_dir=path_to_output_directory
+
+busco -m genome -i $assembly --auto-lineage-euk --long -o $out_dir  -f
+```
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Using the ONT reads to refine trasncripts annotation
+## Using the ONT reads to refine trasncripts annotation
 
-* Basecalling fast5 files (all fast5 files were basecalled using Guppy on an Nvidia GPU)
+### Basecalling fast5 files (all fast5 files were basecalled using Guppy on an Nvidia GPU)
+```
+fast5_dir=path_to_fast5_files
+output_dir=path_to_output_directory
 
 /usr/local/packages/guppy-6.4.2_gpu/bin/guppy_basecaller -x "cuda:0" --input_path "$fast5_dir" --save_path "$output_dir" --config rna_r9.4.1_70bps_hac.cfg --min_qscore 7 --records_per_fastq 10000000 --gpu_runners_per_device 8 --num_callers 1 (--trim-strategy none)
+```
+### read alignment using minimap.sh script
+```
+fastq_file=path_to_fastq_file
+sam_file=path_to_out_sam
+bam_file=path_to_out_bam
+ref_file=path_to_ref_genome
 
-* read alignment using minimap.sh script
+minimap2 -ax map-ont -t 2 "$ref_file" "$fastq_file" > "$sam_file"
 
-fastq_dir=/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_ONT/Annotation/282_aligned
+samtools view -bhF 2308 $sam_file | samtools sort -o $bam_file
 
-fastq_file1=/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_ONT/Annotation/Ld_3ONT.fastq.gz
+samtools index $bam_file
 
-sam_file1=Ld_3ONT_282.sam
-
-ref_file=/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_genome/Flye_scaffold/Ld1S_assembly_final.fasta
-
-minimap2 -ax map-ont -t 2 "$ref_file" "$fastq_file1" > "$sam_file1"
-
-samtools view -bhF 2308 Ld_3ONT_282.sam | samtools sort -o Ld_3ONT_282.bam
-
-samtools index Ld_3ONT_282.bam
+rm *.sam
+```
