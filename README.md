@@ -2,6 +2,7 @@
 
 Table of content: <br />
 [Basecalling ONT reads and mapping to the genome](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#basecalling-ont-reads)<br />
+[Isolating poly- and monocistrons with a splice leader]() <br />
 
 Software requirements: <br />
 • guppy-6.4.2 <br />
@@ -21,6 +22,9 @@ samtools view -bhF 2308 sam_file.sam | samtools sort -o bam_file.bam
 samtools index bam_file.bam
 rm *.sam
 ```
+
+## Isolating poly- and monocistrons with a splice leader
+
 
 
 
