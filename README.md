@@ -1,12 +1,13 @@
 # Ld1S_genome
 
 table of content
-
+[Long reads mapping with minimap2]
 [Genome Assembly Strategies](https://github.com/Franck-Dumetz/Ld1S_genome/blob/main/README.md#genome-assembly-strategies)<br /> 
 
 Software requirements: <br />
 • canu2.1.1 <br />
 • flye2.9 <br />
+• quast-5.2.0 <br />
 • minimap2.1 <br />
 
 
@@ -46,9 +47,8 @@ ccs_reads=path_to_ccs_reads
 /usr/local/packages/canu-2.1.1/bin/canu -assemble -pacbio-hifi $ccs_reads
 ```
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-* Checking genome assembly quality compared to LdBPK282A2
-  * using quast
+## Assembly quality assessment 
+   ## Quast
 ```
 ref_gen=path_to_ref_genome
 ref_gff=path_to_ref_gff
