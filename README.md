@@ -4,6 +4,13 @@ table of content
 
 [Genome Assembly Strategies](https://github.com/Franck-Dumetz/Ld1S_genome/blob/main/README.md#genome-assembly-strategies)<br /> 
 
+Software requirements:
+#canu2.1.1
+#flye2.9
+#minimap2.1
+
+
+
 
 Making genome assembly of Ld1S2D and further comparison with BPK282A2 (TritrypDB v63)
 
@@ -42,8 +49,14 @@ ccs_reads=path_to_ccs_reads
 
 * Checking genome assembly quality compared to LdBPK282A2
   * using quast
+```
+ref_gen=path_to_ref_genome
+ref_gff=path_to_ref_gff
+out_dir=path_to_new_directory
+assembly=path_to_assembly
 
-/usr/local/packages/quast-5.2.0/quast.py -r /local/projects-t3/SerreDLab-3/fdumetz/Genomes/LdBPK282A2/TriTrypDB-63_LdonovaniBPK282A1_Genome.fasta -g /local/projects-t3/SerreDLab-3/fdumetz/Genomes/LdBPK282A2/TriTrypDB-63_LdonovaniBPK282A1.gff -o quast_282vsLd1S --min-contig 1000 -t 4 --gene-finding Ld1S_assembly_final.fasta
+/usr/local/packages/quast-5.2.0/quast.py -r $ref_gen -g $ref_gff -o $out_dir --min-contig 1000 -t 4 --gene-finding $assembly
+```
 
   * using Mummer
 
