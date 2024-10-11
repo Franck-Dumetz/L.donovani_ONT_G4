@@ -13,6 +13,7 @@ Software requirements: <br />
 • quast-5.2.0 <br />
 • minimap2.1 <br />
 • mummer-3.23 <br />
+• trnascan-se-2.0.3 <br />
 
 
 ## mapping CCS reads to LdBPK282A2 using minimap2
@@ -150,18 +151,12 @@ ggplot(Ld1_cov_sum, aes(x=window, y=sum_cov)) +
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-* tRNA destection using tRNA scan
+### tRNA detection
+```
+assembly=path_to_assembly
 
-/usr/local/packages/trnascan-se-2.0.3/bin/eufindtRNA -r <PATH>/Ld1S_assembly_final.fasta > Ld1S_tRNA_strict.csv 
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-* snoRNA detection using snoReport2.0
-
-export SNOREPORTMODELS="/usr/local/packages/snoreport-2.0/models"   #### make  sure the "models" folder is readable or it won't work
-
-/usr/local/packages/snoreport-2.0/snoreport_2 -i /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_genome/Flye_scaffold/Ld1S_assembly_final.fasta -CD -HACA -o Ld1S_snoRNA --PS
-
+/usr/local/packages/trnascan-se-2.0.3/bin/eufindtRNA -r $assembly > Ld1S_tRNA_strict.csv 
+```
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## BUSCO
