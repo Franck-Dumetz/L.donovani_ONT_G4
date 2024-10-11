@@ -4,10 +4,10 @@ table of content
 
 [Genome Assembly Strategies](https://github.com/Franck-Dumetz/Ld1S_genome/blob/main/README.md#genome-assembly-strategies)<br /> 
 
-Software requirements:
-• canu2.1.1
-• flye2.9
-• minimap2.1
+Software requirements: <br />
+• canu2.1.1 <br />
+• flye2.9 <br />
+• minimap2.1 <br />
 
 
 
