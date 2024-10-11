@@ -23,7 +23,7 @@ samtools index bam_file.bam
 rm *.sam
 ```
 
-## Isolating poly- and monocistrons with a splice leader
+## Isolating poly- and mono-cistrons with a splice leader
 
 
 
