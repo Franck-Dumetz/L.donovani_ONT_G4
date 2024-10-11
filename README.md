@@ -1,4 +1,4 @@
-# L.donovani UTR mapping (using ONT Direct RNA sequencing)
+# _L. donovani_ UTR mapping (using ONT Direct RNA sequencing)
 
 Table of content: <br />
 [Basecalling ONT reads and mapping to the genome](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#basecalling-ont-reads)<br />
