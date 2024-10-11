@@ -15,7 +15,14 @@ from the pass folder
 ```
 cat *.fastq > experiment_name.fastq
 ```
-map to the genome using minimap2 with [minimap2.sh]()<br />
+map to the genome using minimap2 with [minimap2.sh](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/minimap.sh)<br />
+```
+samtools view -bhF 2308 sam_file.sam | samtools sort -o bam_file.bam
+samtools index bam_file.bam
+rm *.sam
+```
+
+
 
 
 
