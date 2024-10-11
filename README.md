@@ -1,19 +1,19 @@
 # Ld1S_genome
 Making genome assembly of Ld1S2D and further comparison with BPK282A2 (TritrypDB v63)
 
-* mapping CCS reads to LdBPK282A2 using minimap2
+## mapping CCS reads to LdBPK282A2 using minimap2
 
 minimap2 -ax map-hifi -t 2 <PATH-TO-REF-GENOME>/TriTrypDB-63_LdonovaniBPK282A1_Genome.fasta <PATH-TO_CCS_READS>/PACBIO_DATA/EDS10_20230707_S64411e_PL100299966A-1_A01_bc2088-bc2088.ccs.fastq.gz > Ld1S_282aligned.sam
 samtools view -bhF 2308 Ld1S_282aligned.sam | samtools sort -o Ld1S_282aligned.bam
 samtools index Ld1S_282aligned.bam
 
-* Genome assembly strategies
-   * Using Flye
+## Genome assembly strategies
+   ### Using Flye
 
 export PATH=/usr/local/packages/flye-2.9/bin:$PATH  
 /usr/local/packages/flye-2.9/bin/flye --pacbio-hifi /PACBIO_DATA/EDS10_20230707_S64411e_PL100299966A-1_A01_bc2088-bc2088.ccs.fastq.gz --genome-size 33m --out-dir /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S2D_genome/Flye -t 16
 
-   * Using Canu
+   ### Using Canu
 
 /usr/local/packages/canu-2.1.1/bin/canu -assemble -pacbio-hifi /PACBIO_DATA/EDS10_20230707_S64411e_PL100299966A-1_A01_bc2088-bc2088.ccs.fastq.gz
 
