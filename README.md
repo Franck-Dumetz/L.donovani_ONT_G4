@@ -1,14 +1,14 @@
 # L.donovani UTR mapping (using ONT Direct RNA sequencing)
 
 Table of content: <br />
-[Basecalling ONT reads]()<br />
+[Basecalling ONT reads](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#basecalling-ont-reads)<br />
 
 Software requirements: <br />
 • guppy-6.4.2 <br />
 
 ## Basecalling ONT reads
 
-on a GPU
+on a GPU <br />
 [guppy.sh](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/guppy.sh) <br />
 
 
