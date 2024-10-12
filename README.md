@@ -1,6 +1,6 @@
 # Ld1S genome assembly
 
-table of content: <br />
+Table of content: <br />
 [Long reads mapping with minimap2](https://github.com/Franck-Dumetz/Ld1S_genome/blob/main/README.md#mapping-ccs-reads-to-ldbpk282a2-using-minimap2)<br />
 [Genome Assembly Strategies](https://github.com/Franck-Dumetz/Ld1S_genome/blob/main/README.md#genome-assembly-strategies)<br /> 
 [Assembly quality assessment](https://github.com/Franck-Dumetz/Ld1S_genome/blob/main/README.md#assembly-quality-assessment)<br />
