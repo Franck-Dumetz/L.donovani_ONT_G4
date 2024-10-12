@@ -2,7 +2,7 @@
 
 Table of content: <br />
 [Basecalling ONT reads and mapping to the genome](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#basecalling-ont-reads-and-mapping-to-the-genome)<br />
-[Isolating reads with L. donovani SL in 5']() <br />
+[Isolating reads with L. donovani SL in 5'](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#isolating-reads-with-l-donovani-sl-in-5) <br />
   - [Isolating poly- and mono-cistronic reads](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#isolating-poly--and-mono-cistronic-reads) <br />
   - [Isolating reads with a SL]() <br />
   - [Verify the SL is the same for all reads](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#verify-the-sl-is-the-same-for-all-reads) <br />
