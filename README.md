@@ -68,6 +68,7 @@ bedtools bamtofastq -i monocistron.bam -fq monocistron.fastq
 ### Fuzznuc to identidy motifs with mismatches and sorting alors
 ```
 input=path_to_fastq_to_analyze
+
 fuzznuc -sequence $input -pattern ATAAGTATCAGTTTCTGTACTTTATTG -pmismatch 6 -outfile monocistron_SL.fuzznuc
 ```
 The output needs to be refined to only have read names, start and end, start and end of motif and the motif found and searched for <br />
