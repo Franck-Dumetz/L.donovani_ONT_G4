@@ -78,12 +78,22 @@ grep 'Sequence' --no-group-separator -A1 monocistron_SL.fuzznuc | grep -v 'HitCo
 Then sort reads with a start of motif no futher than 6 nucleotides from the start <br />
 Extract only read names from that file <br />
 ```
-awk '{print $1}' monocistron_SL_filtered.txt |awk 'NR>1' > _monocistron_SL_ReadName.txt
+awk '{print $1}' monocistron_SL_filtered.txt |awk 'NR>1' > monocistron_SL_ReadName.txt
 ```
-Create a new fastq file using the exported read names <br />
+Create a new fastq file using the exported read names and the original monocistron.fastq <br />
 ```
-grep --no-group-separator -A3 -f '27_4_fuz_filtered.txt'  230705_Ld_3ONT.fastq > 230705_Ld_3ONT_27_4_fuz_filtered.fastq
+grep --no-group-separator -A3 -f 'monocistron_SL_ReadName.txt' monocistron.fastq > monocistron_SL.fastq
 ```
 Realign with [minimap2.sh](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/minimap.sh)<br />
 and samtools (as previously described) <br />
+
+## Verify the SL is the same for all reads
+Isolating the 50 first nucleotides of each read <br />
+```
+seqkit subseq -r 1:50 monocistron_SL.fasta > 50first_nuc_SL.fasta
+```
+Using meme for motif search <br />
+```
+meme 50first_nuc_SL.fasta -dna -oc . -nostatus -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0
+```
 
