@@ -3,6 +3,7 @@
 Table of content: <br />
 [Basecalling ONT reads and mapping to the genome](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#basecalling-ont-reads-and-mapping-to-the-genome)<br />
 [Isolating poly- and monocistrons with a splice leader](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#isolating-poly--and-mono-cistrons-with-a-splice-leader) <br />
+[Verify the SL is the same for all reads](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#verify-the-sl-is-the-same-for-all-reads) <br />
 
 Software requirements: <br />
 • emboss-6.6.0 fuzznuc <br />
