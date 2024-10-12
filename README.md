@@ -3,6 +3,7 @@
 Table of content: <br />
 [Basecalling ONT reads and mapping to the genome](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#basecalling-ont-reads-and-mapping-to-the-genome)<br />
 [Isolating poly- and monocistrons with a splice leader](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#isolating-poly--and-mono-cistrons-with-a-splice-leader) <br />
+[Isolating reads with a SL]() <br />
 [Verify the SL is the same for all reads](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#verify-the-sl-is-the-same-for-all-reads) <br />
 
 Software requirements: <br />
@@ -66,7 +67,7 @@ awk '/^[^>]/{ gsub(/U/,"T") }1' file.fasta >newfile.fasta
 ```
 bedtools bamtofastq -i monocistron.bam -fq monocistron.fastq
 ```
-### Fuzznuc to identidy motifs with mismatches and sorting alors
+### Isolating reads with a SL
 ```
 input=path_to_fastq_to_analyze
 
