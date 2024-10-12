@@ -6,6 +6,7 @@ Table of content: <br />
   - [Isolating poly- and mono-cistronic reads](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#isolating-poly--and-mono-cistronic-reads) <br />
   - [Isolating reads with a SL](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#isolating-reads-with-a-sl) <br />
   - [Verify the SL is the same for all reads](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#verify-the-sl-is-the-same-for-all-reads) <br />
+[Transcript evidence annotation and clean up]() <br />
 
 Software requirements: <br />
 - emboss-6.6.0 fuzznuc <br />
@@ -14,6 +15,7 @@ Software requirements: <br />
 - meme-5.5.5 <br />
 - ncbi-blast+-2.14.0 <br />
 - samtools-1.20 <br />
+- stringtie-2.2.1 <br />
 
 ## Basecalling ONT reads and mapping to the genome
 
@@ -69,7 +71,7 @@ awk '/^[^>]/{ gsub(/U/,"T") }1' file.fasta >newfile.fasta
 ```
 bedtools bamtofastq -i monocistron.bam -fq monocistron.fastq
 ```
-## Isolating reads with a SL
+### Isolating reads with a SL
 ```
 input=path_to_fastq_to_analyze
 
@@ -91,7 +93,7 @@ grep --no-group-separator -A3 -f 'monocistron_SL_ReadName.txt' monocistron.fastq
 Realign with [minimap2.sh](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/minimap.sh)<br />
 and samtools (as previously described) <br />
 
-## Verify the SL is the same for all reads
+### Verify the SL is the same for all reads
 Isolating the 50 first nucleotides of each read <br />
 ```
 seqkit subseq -r 1:50 monocistron_SL.fasta > 50first_nuc_SL.fasta
@@ -100,4 +102,7 @@ Using meme for motif search <br />
 ```
 meme 50first_nuc_SL.fasta -dna -oc . -nostatus -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0
 ```
+
+
+## Transcript evidence finding and clean up
 
