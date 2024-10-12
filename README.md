@@ -13,6 +13,7 @@ Software requirements: <br />
 • quast-5.2.0 <br />
 • minimap2.1 <br />
 • mummer-3.23 <br />
+• samtools-1.20 <br />
 • trnascan-se-2.0.3 <br />
 
 
