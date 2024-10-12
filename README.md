@@ -8,6 +8,7 @@ Software requirements: <br />
 • guppy-6.4.2 <br />
 • manimap2.1 <br />
 • ncbi-blast+-2.14.0 <br />
+• samtools-1.20 <br />
 
 ## Basecalling ONT reads and mapping to the genome
 
