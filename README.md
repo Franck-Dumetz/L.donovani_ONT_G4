@@ -1,14 +1,13 @@
 # Ld1S genome assembly
-<br />
-This page is dedicated to how the assembly of Ld1S was perform
-<br />
+
+
 Table of content: <br />
-[Long reads mapping with minimap2](https://github.com/Franck-Dumetz/Ld1S_genome/blob/main/README.md#mapping-ccs-reads-to-ldbpk282a2-using-minimap2)<br />
-[Genome Assembly Strategies](https://github.com/Franck-Dumetz/Ld1S_genome/blob/main/README.md#genome-assembly-strategies)<br /> 
-[Assembly quality assessment](https://github.com/Franck-Dumetz/Ld1S_genome/blob/main/README.md#assembly-quality-assessment)<br />
+[Long reads mapping with minimap2](https://github.com/Franck-Dumetz/Ld1S_genome/blob/main/README.md#mapping-ccs-reads-to-ldbpk282a2-using-minimap2) <br />
+[Genome Assembly Strategies](https://github.com/Franck-Dumetz/Ld1S_genome/blob/main/README.md#genome-assembly-strategies) <br /> 
+[Assembly quality assessment](https://github.com/Franck-Dumetz/Ld1S_genome/blob/main/README.md#assembly-quality-assessment) <br />
 
 Software requirements: <br />
-• busco-5.4.3
+• busco-5.4.3 <br />
 • canu-2.1.1 <br />
 • flye-2.9 <br />
 • guppy-6.4.2 <br />
