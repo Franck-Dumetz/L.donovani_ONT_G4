@@ -10,9 +10,9 @@ Software requirements: <br />
 • canu-2.1.1 <br />
 • flye-2.9 <br />
 • guppy-6.4.2 <br />
-• quast-5.2.0 <br />
 • minimap2.1 <br />
 • mummer-3.23 <br />
+• quast-5.2.0 <br />
 • samtools-1.20 <br />
 • trnascan-se-2.0.3 <br />
 
