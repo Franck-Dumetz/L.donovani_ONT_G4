@@ -16,6 +16,7 @@ Software requirements: <br />
 - ncbi-blast+-2.14.0 <br />
 - samtools-1.20 <br />
 - stringtie-2.2.1 <br />
+- transdecoder-5.7.1 <br />
 
 ## Basecalling ONT reads and mapping to the genome
 
@@ -92,6 +93,7 @@ grep --no-group-separator -A3 -f 'monocistron_SL_ReadName.txt' monocistron.fastq
 ```
 Realign with [minimap2.sh](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/minimap.sh)<br />
 and samtools (as previously described) <br />
+creating monocistron_SL.bam <br />
 
 ### Verify the SL is the same for all reads
 Isolating the 50 first nucleotides of each read <br />
@@ -105,4 +107,12 @@ meme 50first_nuc_SL.fasta -dna -oc . -nostatus -time 14400 -mod zoops -nmotifs 3
 
 
 ## Transcript evidence finding and clean up
+```
+input_bam=path_to_monocistron_SL.bam
+
+stringtie-2.2.1/stringtie $input_bam --fr -f 0.5 -c 3 -l Ld1S -p 8 -L -R -o monocistron_SL.gtf
+```
+Data had to be manually clean up. Stringie is often confused with isoforms. Only kepp the longest transcript when it does not overlap with the nieghboring reads. <br />
+
+
 
