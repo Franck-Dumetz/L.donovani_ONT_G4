@@ -75,3 +75,7 @@ The output needs to be refined to only have read names, start and end, start and
 ```
 grep 'Sequence' --no-group-separator -A1 monocistron_SL.fuzznuc | grep -v 'HitCount' | grep -v 'Start' | awk '{printf "%s%s",$0,NR%2?"\t":RS}' > monocistron_SL.tsv
 ```
+Then sort reads with a start of motif no futher than 6 nucleotides from the start <br />
+Realign with [minimap2.sh](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/minimap.sh)<br />
+and samtools (as previously described) <br />
+
