@@ -8,12 +8,12 @@ Table of content: <br />
   - [Verify the SL is the same for all reads](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#verify-the-sl-is-the-same-for-all-reads) <br />
 
 Software requirements: <br />
-• emboss-6.6.0 fuzznuc <br />
-• guppy-6.4.2 <br />
-• manimap2.1 <br />
-• meme-5.5.5 <br />
-• ncbi-blast+-2.14.0 <br />
-• samtools-1.20 <br />
+- emboss-6.6.0 fuzznuc <br />
+- guppy-6.4.2 <br />
+- manimap2.1 <br />
+- meme-5.5.5 <br />
+- ncbi-blast+-2.14.0 <br />
+- samtools-1.20 <br />
 
 ## Basecalling ONT reads and mapping to the genome
 
