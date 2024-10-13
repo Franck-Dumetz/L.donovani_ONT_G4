@@ -77,7 +77,7 @@ bedtools bamtofastq -i monocistron.bam -fq monocistron.fastq
 ```
 ### Isolating reads with a SL
 ```
-input=path_to_fastq_to_analyze
+input=path/monocistron.fastq
 
 fuzznuc -sequence $input -pattern ATAAGTATCAGTTTCTGTACTTTATTG -pmismatch 6 -outfile monocistron_SL.fuzznuc
 ```
@@ -111,7 +111,7 @@ meme 50first_nuc_SL.fasta -dna -oc . -nostatus -time 14400 -mod zoops -nmotifs 3
 
 ## Transcript evidence finding and clean up
 ```
-input_bam=path_to_monocistron_SL.bam
+input_bam=path/monocistron_SL.bam
 
 stringtie-2.2.1/stringtie $input_bam --fr -f 0.5 -c 3 -l Ld1S -p 8 -L -R -o monocistron_SL.gtf
 ```
@@ -124,13 +124,19 @@ gtf=path/monocistron_SL_filtered.gtf
 assembly=path/assembly.fasta
 
 transdecoder-5.7.1/util/gtf_genome_to_cdna_fasta.pl $gtf $assembly > Transdecoder_transcripts.fasta
-
+```
+```
 transdecoder-5.7.1/TransDecoder.LongOrfs -t Transdecoder_transcripts.fasta
-
+```
+```
 transdecoder-5.7.1/TransDecoder.Predict -t Transdecoder_transcripts.fasta
+```
+```
+gtf=path/monocistron_SL_filtered.gtf
 
 transdecoder-5.7.1/util/gtf_to_alignment_gff3.pl $gtf > monocistron_SL_filtered.gff3
-
+```
+```
 transdecoder-5.7.1/util/cdna_alignment_orf_to_genome_orf.pl Transdecoder_transcripts.fasta.transdecoder.gff3 monocistron_SL_filtered.gff3 Transdecoder_transcripts.fasta > monocistron_SL.transdecoder.genome.gff3
 ```
 
