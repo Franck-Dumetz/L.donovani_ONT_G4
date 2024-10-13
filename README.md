@@ -15,6 +15,7 @@ Software requirements: <br />
 - meme-5.5.5 <br />
 - ncbi-blast+-2.14.0 <br />
 - samtools-1.20 <br />
+- seqtk-1.0-r63-dirty <br />
 - stringtie-2.2.1 <br />
 - transdecoder-5.7.1 <br />
 
@@ -112,7 +113,9 @@ input_bam=path_to_monocistron_SL.bam
 
 stringtie-2.2.1/stringtie $input_bam --fr -f 0.5 -c 3 -l Ld1S -p 8 -L -R -o monocistron_SL.gtf
 ```
-Data had to be manually clean up. Stringie is often confused with isoforms. Only kepp the longest transcript when it does not overlap with the nieghboring reads. <br />
+Data had to be manually clean up. Stringie is often confused with isoforms. Only kepp the longest transcript when it does not overlap with the neighboring reads. <br />
+To create monocistron_SL_filtered.gtf <br />
 
+## Finding coding sequence
 
 
