@@ -119,5 +119,18 @@ Data had to be manually clean up. Stringie is often confused with isoforms. Only
 To create monocistron_SL_filtered.gtf <br />
 
 ## Finding coding sequence
+```
+gtf=path/monocistron_SL_filtered.gtf
+assembly=path/assembly.fasta
 
+transdecoder-5.7.1/util/gtf_genome_to_cdna_fasta.pl $gtf $assembly > Transdecoder_transcripts.fasta
+
+transdecoder-5.7.1/TransDecoder.LongOrfs -t Transdecoder_transcripts.fasta
+
+transdecoder-5.7.1/TransDecoder.Predict -t Transdecoder_transcripts.fasta
+
+transdecoder-5.7.1/util/gtf_to_alignment_gff3.pl $gtf > monocistron_SL_filtered.gff3
+
+transdecoder-5.7.1/util/cdna_alignment_orf_to_genome_orf.pl Transdecoder_transcripts.fasta.transdecoder.gff3 monocistron_SL_filtered.gff3 Transdecoder_transcripts.fasta > monocistron_SL.transdecoder.genome.gff3
+```
 
