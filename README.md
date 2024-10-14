@@ -140,11 +140,25 @@ transdecoder-5.7.1/util/gtf_to_alignment_gff3.pl $gtf > monocistron_SL_filtered.
 ```
 transdecoder-5.7.1/util/cdna_alignment_orf_to_genome_orf.pl Transdecoder_transcripts.fasta.transdecoder.gff3 monocistron_SL_filtered.gff3 Transdecoder_transcripts.fasta > monocistron_SL.transdecoder.genome.gff3
 ```
-
+TransDecoder outputs a lot of false positive. <br />
 Transdcoder outputs 4 different files: .bed, .cds, .pep, .gff3 <br />
-Use the .cds file and use blast to identidy the orthologs in BPK282 <br />
-First isolate only "complete_ORF" <br />
+First, use the .pep file to compare with BPK282 using blatp: <br />
 ```
+/usr/local/packages/ncbi-blast+-2.14.0/bin/blastp -subject Transdecoder_transcripts.fasta.transdecoder.pep -query TriTrypDB-66_LdonovaniBPK282A1_AnnotatedProteins.fasta -outfmt 6 -out blastp.out
+```
+Then only keep all lines with a match value >95% in a blastp_filtered.out <br />
+Isolate the headers from the .pep file <br />
+```
+awk '/^>/ { print $0 > "pep-headers.txt"; next } { print $0 > "pep-sequences.txt" }' Transdecoder_transcripts.fasta.transdecoder.pep
+
+awk '{print S1}' blast_filtered.out > blast_LdName.txt
+```
+Use [Match_pep2blastp.py](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/match_pep2blastp.py) <br /> 
+It outputs a file called complete_1Sfrom-282.txt that contains all BPK282 transfered to Ld1S (6201 protein transfered) <br />
+
+Asign header to sequence using [pep_file_Ld1S.py](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/pep_file_Ld1S.py) <br />
+
+
 grep complete Transdecoder_transcripts.fasta.transdecoder.cds > Ld1S_Transdecoder_completeORF.txt
 ```
 Isolating only transcripts annotation from the Stringtie output <br />
