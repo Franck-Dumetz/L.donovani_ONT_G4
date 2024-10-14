@@ -3,7 +3,7 @@
 # File paths for the input files
 pep_file_path = '/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/linear_Ld1S_Transdecoder_transcripts.fasta.transdecoder.pep'
 complete_file_path = '/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/complete_1Sfrom282.txt'
-output_sequences_file = 'extracted_sequences.fasta'
+output_sequences_file = 'Ld1S_pep_from282.fasta'
 
 # Extracting the IDs from the complete_1Sfrom-282.txt
 complete_ids = set()
