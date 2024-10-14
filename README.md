@@ -140,3 +140,14 @@ transdecoder-5.7.1/util/gtf_to_alignment_gff3.pl $gtf > monocistron_SL_filtered.
 transdecoder-5.7.1/util/cdna_alignment_orf_to_genome_orf.pl Transdecoder_transcripts.fasta.transdecoder.gff3 monocistron_SL_filtered.gff3 Transdecoder_transcripts.fasta > monocistron_SL.transdecoder.genome.gff3
 ```
 
+Transdcoder outputs 4 different files: .bed, .cds, .pep, .gff3 <br />
+Use the .cds file and use blast to identidy the orthologs in BPK282 <br />
+First isolate only "complete_ORF" <br />
+```
+grep complete Transdecoder_transcripts.fasta.transdecoder.cds > Ld1S_Transdecoder_completeORF.txt
+```
+Isolating only transcripts annotation from the Stringtie output <br />
+```
+awk '$3 ~ /transcript/'  Ld1S_stg_filtered_final_renamed.gtf > Ld1S_stg_filtered_final_renamed_Col32.gtf
+```
+
