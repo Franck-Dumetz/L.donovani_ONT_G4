@@ -157,12 +157,19 @@ Use [Match_pep2blastp.py](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping
 It outputs a file called complete_1Sfrom-282.txt that contains all BPK282 transfered to Ld1S (6201 protein transfered) <br />
 
 Asign header to sequence using [pep_file_Ld1S.py](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/pep_file_Ld1S.py) <br />
+Output file Ld1S_pep_from282.fasta contains all pep sequence transfered from BPK282<br />
+Isolating only transcripts annotation from the Stringtie output. This will remove all mention fof UTRs <br />
+```
+awk '$3 == "gene" || $3 == "mRNA" || $3 == "exon" || $3 == "CDS" || $3 == ""' Ld1S_stg_filtered.transdecoder.genome.gff3 > Ld1S_stg_filtered.transdecoder.genome_short.gff3
 
+```
+Making a new gff3 with all BPK282 transdecoder detected annotations <br />
+to only select BPK282 transferred annotation use [new_gff3_TransDecoderVS282.py](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/new_gff3_TransDecoderVS282.py) <br />
+Clean up to remove all non CDS annotation with: <br />
+```
+grep -v 3prime Cleaned_up_transdecoderVSBPK282.gff3 >  Cleaned_up_transdecoderVSBPK282_1.gff3
+grep -v 5prime Cleaned_up_transdecoderVSBPK282.gff3 >  Cleaned_up_transdecoderVSBPK282_2.gff3
+grep -v -f blast_LdName.txt Cleaned_up_transdecoderVSBPK282_2.gff3 | head
+```
 
-grep complete Transdecoder_transcripts.fasta.transdecoder.cds > Ld1S_Transdecoder_completeORF.txt
-```
-Isolating only transcripts annotation from the Stringtie output <br />
-```
-awk '$3 ~ /transcript/'  Ld1S_stg_filtered_final_renamed.gtf > Ld1S_stg_filtered_final_renamed_Col32.gtf
-```
 
