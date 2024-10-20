@@ -95,7 +95,7 @@ Create a new fastq file using the exported read names and the original monocistr
 ```
 grep --no-group-separator -A3 -f 'monocistron_SL_ReadName.txt' monocistron.fastq > monocistron_SL.fastq
 ```
-Realign with [minimap2.sh](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/minimap.sh)<br />
+Realign with [minimap2.sh](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/minimap.sh) <br />
 and samtools (as previously described) <br />
 creating monocistron_SL.bam <br />
 
@@ -108,7 +108,6 @@ Using meme for motif search <br />
 ```
 meme 50first_nuc_SL.fasta -dna -oc . -nostatus -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0
 ```
-
 
 ## Transcript evidence finding and clean up
 ```
@@ -173,6 +172,9 @@ grep -v -f blast_LdName.txt Cleaned_up_transdecoderVSBPK282_2.gff3 | head
 ```
 
 #UTR position and length
+
+
+
 
 [UTR_position-length](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/UTR_position-length.pl) <br />
 
