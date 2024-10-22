@@ -178,3 +178,14 @@ grep -v -f blast_LdName.txt Cleaned_up_transdecoderVSBPK282_2.gff3 | head
 
 [UTR_position-length](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/UTR_position-length.pl) <br />
 
+
+
+## Filtering out reads with less than 5x coverage
+
+```
+samtools depth Ld1S_Ama_monocistron_SL.bam > Ld1S_Ama_monocistron_SL_coverage.txt
+awk '$3 >=5' Ld1S_Ama_monocistron_SL_coverage.txt > Ld1S_Ama_monocistron_SL_FiltCoverage.txt
+awk '{print $1"\t"$2-1"\t"$2}' Ld1S_Ama_monocistron_SL_FiltCoverage.txt > Ld1S_Ama_monocistron_SL_FiltCoverage.bed
+bedtools intersect -abam Ld1S_Ama_monocistron_SL.bam -b Ld1S_Ama_monocistron_SL_FiltCoverage.bed > Ld1S_Ama_monocistron_SL_FiltCoverage.bam
+samtools index Ld1S_Ama_monocistron_SL_FiltCoverage.bam
+```
