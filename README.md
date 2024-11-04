@@ -155,13 +155,13 @@ awk '{print S1}' blast_filtered.out > blast_LdName.txt
 Use [Match_pep2blastp.py](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/match_pep2blastp.py) <br /> 
 It outputs a file called complete_1Sfrom-282.txt that contains all BPK282 transfered to Ld1S (6201 protein transfered) <br />
 
-Asign header to sequence using [pep_file_Ld1S.py](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/pep_file_Ld1S.py) 
+Asign header to sequence using [pep_file_Ld1S.py](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/pep_file_Ld1S.py) <br />
+Output file Ld1S_pep_from282.fasta contains all pep sequence transfered from BPK282 <br />
 <br />
 <br />
 <br />
 <br />
-Output file Ld1S_pep_from282.fasta contains all pep sequence transfered from BPK282<br />
-Isolating only transcripts annotation from the Stringtie output. This will remove all mention fof UTRs <br />
+Isolating only transcripts annotation from the Stringtie output. This will remove all mention of UTRs <br />
 ```
 awk '$3 == "gene" || $3 == "mRNA" || $3 == "exon" || $3 == "CDS" || $3 == ""' Ld1S_stg_filtered.transdecoder.genome.gff3 > Ld1S_stg_filtered.transdecoder.genome_short.gff3
 
