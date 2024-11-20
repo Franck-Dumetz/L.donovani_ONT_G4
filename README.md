@@ -193,3 +193,7 @@ awk '{print $1"\t"$2-1"\t"$2}' Ld1S_Ama_monocistron_SL_FiltCoverage.txt > Ld1S_A
 bedtools intersect -abam Ld1S_Ama_monocistron_SL.bam -b Ld1S_Ama_monocistron_SL_FiltCoverage.bed > Ld1S_Ama_monocistron_SL_FiltCoverage.bam
 samtools index Ld1S_Ama_monocistron_SL_FiltCoverage.bam
 ```
+
+## Naming harmonisazion between Stringtie promastigotes and Stringtie amastigotes
+
+To match names between the different files, we used gtf_name_transfer.pl
