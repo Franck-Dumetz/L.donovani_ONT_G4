@@ -197,3 +197,6 @@ samtools index Ld1S_Ama_monocistron_SL_FiltCoverage.bam
 ## Naming harmonisazion between Stringtie promastigotes and Stringtie amastigotes
 
 To match names between the different files, we used [gtf_name_transfer.pl](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/gtf_name_transfer.pl) <br />
+It will transfer the name of the promastigote stringtie onto the amastigote stringie <br />
+
+
