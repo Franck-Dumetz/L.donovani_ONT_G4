@@ -13,6 +13,7 @@ Table of content: <br />
 
 Software requirements: <br />
 - emboss-6.6.0 fuzznuc <br />
+- FEELnc <br />
 - guppy-6.4.2 <br />
 - manimap2.1 <br />
 - meme-5.5.5 <br />
@@ -196,5 +197,17 @@ samtools index Ld1S_Ama_monocistron_SL_FiltCoverage.bam
 
 To match names between the different files, we used [gtf_name_transfer.pl](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/gtf_name_transfer.pl) <br />
 It will transfer the name of the promastigote stringtie onto the amastigote stringie <br />
+
+
+## Finding lncRNA in Leishmania genome
+
+If you you forgot the 'transcript_id' argument while using Transdecoder then use the following [add_transcript-id_to_gff.py]() to add the transcript-ID <br />
+Then use FEELnc to find lncRNA <br/>
+'''
+gffread Ld1S_stg_filtered.transdecoder.genome.fixed.gff3 -T -o Ld1S_stg_filtered.transdecoder.genome.fixed1.gff3
+FEELnc_filter.pl -i Ld1S_stg_filtered_final_renamed_notRNA.gtf -a Ld1S_stg_filtered.transdecoder.genome.fixed1.gff3 > Ld_candidate_lncRNA.gtf
+'''
+
+
 
 
