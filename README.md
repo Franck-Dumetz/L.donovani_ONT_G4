@@ -9,7 +9,7 @@ Table of content: <br />
 
 [Transcript evidence annotation and clean up](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#transcript-evidence-finding-and-clean-up) <br />
 [Finding coding sequences](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#finding-coding-sequence) <br />
-
+[Finding lncRNA in Leishmania genome]() <br />
 
 Software requirements: <br />
 - emboss-6.6.0 fuzznuc <br />
@@ -201,7 +201,7 @@ It will transfer the name of the promastigote stringtie onto the amastigote stri
 
 ## Finding lncRNA in Leishmania genome
 
-If you you forgot the 'transcript_id' argument while using Transdecoder then use the following [add_transcript-id_to_gff.py]() to add the transcript-ID <br />
+If you you forgot the 'transcript_id' argument while using Transdecoder then use the following [add_transcript-id_to_gff.py](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/5f0a4d399f6723351adfb81846d87a9ab3cd78f1/add_transcript-id_to_gff.py) to add the transcript-ID <br />
 Then use FEELnc to find lncRNA <br/>
 '''
 gffread Ld1S_stg_filtered.transdecoder.genome.fixed.gff3 -T -o Ld1S_stg_filtered.transdecoder.genome.fixed1.gff3
