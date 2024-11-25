@@ -204,10 +204,10 @@ It will transfer the name of the promastigote stringtie onto the amastigote stri
 
 If you forgot the 'transcript_id' argument while using Transdecoder then use the following [add_transcript-id_to_gff.py](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/5f0a4d399f6723351adfb81846d87a9ab3cd78f1/add_transcript-id_to_gff.py) to add the transcript-ID <br />
 Then use FEELnc to find lncRNA <br/>
-'''
+```
 gffread Ld1S_stg_filtered.transdecoder.genome.fixed.gff3 -T -o Ld1S_stg_filtered.transdecoder.genome.fixed1.gff3
 FEELnc_filter.pl -i Ld1S_stg_filtered_final_renamed_notRNA.gtf -a Ld1S_stg_filtered.transdecoder.genome.fixed1.gff3 > Ld_candidate_lncRNA.gtf
-'''
+```
 
 
 
