@@ -131,7 +131,7 @@ transdecoder-5.7.1/util/gtf_genome_to_cdna_fasta.pl $gtf $assembly > Transdecode
 transdecoder-5.7.1/TransDecoder.LongOrfs -t Transdecoder_transcripts.fasta
 ```
 ```
-transdecoder-5.7.1/TransDecoder.Predict -t Transdecoder_transcripts.fasta
+transdecoder-5.7.1/TransDecoder.Predict -t Transdecoder_transcripts.fasta --single_best_only
 ```
 ```
 gtf=path/monocistron_SL_filtered.gtf
