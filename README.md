@@ -108,7 +108,7 @@ seqkit subseq -r 1:50 monocistron_SL.fasta > 50first_nuc_SL.fasta
 ```
 Using meme for motif search <br />
 ```
-meme 50first_nuc_SL.fasta -dna -oc . -nostatus -time 14400 -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -revcomp -markov_order 0
+meme 50first_nuc_SL.fasta -dna -oc . -mod zoops -nmotifs 3 -minw 6 -maxw 50 -objfun classic -markov_order 0
 ```
 
 ## Transcript evidence finding and clean up
