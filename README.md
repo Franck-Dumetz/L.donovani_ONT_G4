@@ -17,7 +17,6 @@ Software requirements: <br />
 - guppy-6.4.2 <br />
 - manimap2.1 <br />
 - meme-5.5.5 <br />
-- nanopolish-0.14.0 <br />
 - ncbi-blast+-2.14.0 <br />
 - samtools-1.20 <br />
 - seqtk-1.0-r63-dirty <br />
