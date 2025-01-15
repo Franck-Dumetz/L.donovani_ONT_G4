@@ -13,11 +13,11 @@ Table of content: <br />
 
 Software requirements: <br />
 - emboss-6.6.0 fuzznuc <br />
-- FEELnc <br />
 - gffread-0.12.7 <br />
 - guppy-6.4.2 <br />
 - manimap2.1 <br />
 - meme-5.5.5 <br />
+- nanopolish-0.14.0 <br />
 - ncbi-blast+-2.14.0 <br />
 - samtools-1.20 <br />
 - seqtk-1.0-r63-dirty <br />
@@ -202,14 +202,35 @@ It will transfer the name of the promastigote stringtie onto the amastigote stri
 
 ## Finding lncRNA in Leishmania genome
 
-If you forgot the 'transcript_id' argument while using Transdecoder then use the following [add_transcript-id_to_gff.py](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/5f0a4d399f6723351adfb81846d87a9ab3cd78f1/add_transcript-id_to_gff.py) to add the transcript-ID <br />
-Then use gffread for correct formating and FEELnc to find lncRNA <br/>
+## PolyA tail length calling
+
+We are using nanopolish <br />
+Nanopolish doesn't read vbz compressed fast5 files. Those files need to first be recompressed into gzip using compress_fast5.
 ```
-gffread Ld1S_stg_filtered.transdecoder.genome.fixed.gff3 -T -o Ld1S_stg_filtered.transdecoder.genome.fixed1.gff3
+VBZ_DIR=vbz_dir
+GZIP_DIR=gzip_dir
+fastq=/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Fuzznuc/Ld_3ONT.fastq.gz
+fasta=/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_genome/Flye_scaffold/Ld1S_assembly_final.fasta
+bam_file=/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Fuzznuc/Ld_3ONT_asmfinal.bam
 
-FEELnc_filter.pl -i Ld1S_stg_filtered_final_renamed_notRNA.gtf -a Ld1S_stg_filtered.transdecoder.genome.fixed1.gff3 > Ld_candidate_lncRNA.gtf
+usr/local/packages/python-3.8.2/bin/compress_fast5 -c gzip -i "$VBZ_DIR" -s "$GZIP_DIR"-t 4 --recursive
+
+/usr/local/packages/nanopolish-0.14.0/nanopolish index -d "$GZIP_DIR" "$fasta"
+
+/usr/local/packages/nanopolish-0.14.0/nanopolish polya -r "$fastq" -b "$bam_file" -g "$fasta" -t 32 > Ld_3ONT_polya.txt
 ```
 
-
-
+Processing of the output files to isolate reads that pass QC
+```
+(head -n 1 Ld_3ONT_polya.txt && grep PASS Ld_3ONT_polya.txt) > polyA_pass.txt
+```
+Extracting all polycistron and monocistron read names from the bam file and in extracting polyA data from nanopolish output
+```
+samtools view Ld1S_3ONT_polycistron.bam | awk '{print $1}' > /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/polya/polycistron_read_name.txt
+(head -n 1 polyA_pass.txt && grep -f polycistron_read_name.txt polyA_pass.txt) > Ld_polycistron_polya.txt
+awk '{print $1"\t"$9}' Ld_polycistron_polya.txt > Ld_polycistron_polyaLength.txt
+samtools view Ld1S_3ONT_monocistron.bam | awk '{print $1}' > /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/polya/monocistron_read_name.txt
+(head -n 1 polyA_pass.txt && grep -f monocistron_read_name.txt polyA_pass.txt) > Ld_monocistron_polya.txt
+awk '{print $1"\t"$9}' Ld_monocistron_polya.txt > Ld_monocistron_polyaLength.txt
+```
 
