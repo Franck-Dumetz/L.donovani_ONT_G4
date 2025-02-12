@@ -201,4 +201,21 @@ It will transfer the name of the promastigote stringtie onto the amastigote stri
 
 ## Finding lncRNA in Leishmania genome
 
+## Identifying nucleic acid motif at splicing junction
 
+Extracting 5'UTR bounderies to output chromosome name and ending position of the 5' UTR
+```
+grep 'exon' Ld1S_annotation_filtered_final_final.gtf | awk '{print $1"\t"$4}' > 5bounderies.txt
+```
+Extracting 3'UTR bounderies to output chromosome name and ending position of the 3' UTR
+```
+grep 'exon' Ld1S_annotation_filtered_final_final.gtf | awk '{print $1"\t"$5}' > 3bounderies.txt
+```
+Extracting 25 nucleotides before and after the splicing junction from the fasta genome
+```
+awk '{print $1 ":" $2-25 "-" $2+25}' 5bounderies.txt | xargs -I {} samtools faidx /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_genome/Flye_scaffold/Ld1S_assembly_final.fasta {} > 5bounderies_seq.fasta
+```
+Meme to find motifs 
+```
+/usr/local/packages/meme-5.5.5/bin/meme /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_UTR/5bounderies_seq.fasta -dna -oc . -mod zoops -nmotifs 10 -maxw 25 -objfun classic -markov_order 0
+```
