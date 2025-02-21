@@ -1,5 +1,6 @@
 # Ld1S genome assembly
 
+BioProject SUB15103653
 
 Table of content: <br />
 [Long reads mapping with minimap2](https://github.com/Franck-Dumetz/Ld1S_genome/blob/main/README.md#mapping-ccs-reads-to-ldbpk282a2-using-minimap2) <br />
