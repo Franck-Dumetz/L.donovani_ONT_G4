@@ -1,5 +1,7 @@
 # _L. donovani_ UTR mapping (using ONT Direct RNA sequencing)
 
+BioProject SUB15103653
+
 Table of content: <br />
 [Basecalling ONT reads and mapping to the genome](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#basecalling-ont-reads-and-mapping-to-the-genome)<br />
 [Isolating reads with L. donovani SL in 5'](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#isolating-reads-with-l-donovani-sl-in-5) <br />
