@@ -50,7 +50,10 @@ ccs_reads=path_to_ccs_reads
 
 /usr/local/packages/canu-2.1.1/bin/canu -assemble -pacbio-hifi $ccs_reads
 ```
-
+### Geneal coverage
+```
+samtools depth -a Reads2assembly.bam | awk '{sum+=$3} END {print sum/NR}'
+```
 ## Assembly quality assessment 
 Making genome assembly of Ld1S2D and further comparison with BPK282A2 (TritrypDB v63)
    ## Quast
@@ -162,10 +165,7 @@ assembly=path_to_assembly
 
 /usr/local/packages/trnascan-se-2.0.3/bin/eufindtRNA -r $assembly > Ld1S_tRNA_strict.csv 
 ```
-### Geneal coverage
-```
-samtools depth -a mapped_reads.bam | awk '{sum+=$3} END {print sum/NR}'
-```
+
 ## BUSCO
 ```
 export PATH="/usr/local/packages/augustus-3.4.0/bin:$PATH"
