@@ -26,7 +26,7 @@ ccs_reads=path_to_ccs_reads
 out_sam=output_sam_name
 out_bam=output_bam_name
 
-minimap2 -ax map-hifi -t 2 $ref_gen $ccs_reads > $out_sam
+minimap2 -ax map-hifi -t 8 $ref_gen $ccs_reads > $out_sam
 samtools view -bhF 2308 $out_sam | samtools sort -o $out_bam
 samtools index $out_bam
 ```
@@ -162,8 +162,10 @@ assembly=path_to_assembly
 
 /usr/local/packages/trnascan-se-2.0.3/bin/eufindtRNA -r $assembly > Ld1S_tRNA_strict.csv 
 ```
-
-
+### Geneal coverage
+```
+samtools depth -a mapped_reads.bam | awk '{sum+=$3} END {print sum/NR}'
+```
 ## BUSCO
 ```
 export PATH="/usr/local/packages/augustus-3.4.0/bin:$PATH"
