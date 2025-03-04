@@ -17,6 +17,7 @@ Software requirements: <br />
 - emboss-6.6.0 fuzznuc <br />
 - gffread-0.12.7 <br />
 - guppy-6.4.2 <br />
+- feartureCounts-v2.0.6 <br />
 - manimap2.1 <br />
 - meme-5.5.5 <br />
 - ncbi-blast+-2.14.0 <br />
@@ -111,7 +112,15 @@ Using meme for motif search <br />
 ```
 meme 50first_nuc_SL.fasta -dna -oc . -mod zoops -nmotifs 5 -minw 6 -maxw 50 -objfun classic -markov_order 0
 ```
-
+### Read lenght in the dataset
+Longest read 
+```
+samtools view /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Fuzznuc/Ld1S_3ONT_monocistron.bam | awk '{print length($10)}' | sort -n | head -1
+```
+Shortest read 
+```
+samtools view /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Fuzznuc/Ld1S_3ONT_monocistron.bam | awk '{print length($10)}' | sort -nr | head -1
+```
 ## Transcript evidence finding and clean up
 ```
 input_bam=path/monocistron_SL.bam
@@ -220,4 +229,8 @@ awk '{print $1 ":" $2-25 "-" $2+25}' 5bounderies.txt | xargs -I {} samtools faid
 Meme to find motifs 
 ```
 /usr/local/packages/meme-5.5.5/bin/meme /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_UTR/5bounderies_seq.fasta -dna -oc . -mod zoops -nmotifs 10 -maxw 25 -objfun classic -markov_order 0
+```
+## Gene expression
+```
+featureCounts -s 2 -T 8 -a /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step4_final_removal/Ld1S_annotation_filtered_final_final.gtf -o Ld_3ONT_count.txt /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Fuzznuc/Ld1S_3ONT_monocistron.bam
 ```
