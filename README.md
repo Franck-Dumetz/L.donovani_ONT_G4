@@ -18,6 +18,7 @@ Software requirements: <br />
 - gffread-0.12.7 <br />
 - guppy-6.4.2 <br />
 - feartureCounts-v2.0.6 <br />
+- interproscan <br />
 - manimap2.1 <br />
 - meme-5.5.5 <br />
 - ncbi-blast+-2.14.0 <br />
@@ -234,3 +235,16 @@ Meme to find motifs
 ```
 featureCounts -s 2 -T 8 -a /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step4_final_removal/Ld1S_annotation_filtered_final_final.gtf -o Ld_3ONT_count.txt /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Fuzznuc/Ld1S_3ONT_monocistron.bam
 ```
+## Gene ontology analysis
+Prepare the data
+```
+grep -A1 --no-group-separator -E '\.1\.p1([^0-9]|$)' linear_Ld1S_pep.fasta |sed 's/\*$//' > onlyp1.txt
+```
+Use interproscan to find GO terms associated to each protein
+```
+interproscan.sh -i AMA_pep_clean.fasta -f TSV -goterms -pa -o AMA_blast_resultsGO.tsv
+```
+```
+cut -f1,14 AMA_blast_resultsGO2.tsv | grep "GO:" | less
+```
+Use topGO in R like in [topGo]()
