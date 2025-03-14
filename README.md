@@ -242,6 +242,7 @@ grep -A1 --no-group-separator -E '\.1\.p1([^0-9]|$)' linear_Ld1S_pep.fasta |sed 
 ```
 Use interproscan to find GO terms associated to each protein
 ```
+module load interproscan
 interproscan.sh -i AMA_pep_clean.fasta -f TSV -goterms -pa -cpu 16 -o AMA_blast_resultsGO.tsv
 ```
 ```
