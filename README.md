@@ -247,4 +247,4 @@ interproscan.sh -i AMA_pep_clean.fasta -f TSV -goterms -pa -cpu 16 -o AMA_blast_
 ```
 cut -f1,14 AMA_blast_resultsGO2.tsv | grep "GO:" | less
 ```
-Use topGO in R like in [topGo]()
+Use topGO in R like in [topGo](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/topGO.R) <br />
