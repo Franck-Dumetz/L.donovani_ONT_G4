@@ -246,6 +246,7 @@ module load interproscan
 interproscan.sh -i AMA_pep_clean.fasta -f TSV -goterms -pa -cpu 16 -o AMA_blast_resultsGO.tsv
 ```
 ```
-cut -f1,14 AMA_blast_resultsGO2.tsv | grep "GO:" | less
+cut -f1,14 AMA_blast_resultsGO2.tsv | grep "GO:" AMA_spe_GO.txt
+sed 's/|/,/g' AMA_spe_GO.txt | awk '{gsub(/\[[^]]*\]/, ""); gsub(/\{[^}]*\}/, ""); gsub(/\([^)]*\)/, ""); print}' > AMA_spe_GO_clean.txt
 ```
 Use topGO in R like in [topGo](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/topGO.R) <br />
