@@ -238,7 +238,7 @@ featureCounts -s 2 -T 8 -a /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_
 ## Gene ontology analysis
 Prepare the data
 ```
-grep -A1 --no-group-separator -E '\.1\.p1([^0-9]|$)' linear_Ld1S_pep.fasta |sed 's/\*$//' > onlyp1.txt
+grep -A1 --no-group-separator -E '\.1\.p1([^0-9]|$)' linear_Ld1S_pep.fasta |sed 's/\*$//' > Ld1S_only.p1_linear.fasta
 ```
 Use interproscan to find GO terms associated to each protein
 ```
