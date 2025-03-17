@@ -1,6 +1,6 @@
 # _L. donovani_ UTR mapping and Characterisation
 
-BioProject SUB15103653
+BioProject: PRJNA1226592
 
 Table of content: <br />
 [Basecalling ONT reads and mapping to the genome](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#basecalling-ont-reads-and-mapping-to-the-genome)<br />
