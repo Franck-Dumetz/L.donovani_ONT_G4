@@ -1,4 +1,4 @@
-# _L. donovani_ UTR mapping (using ONT Direct RNA sequencing)
+# _L. donovani_ UTR mapping and Characterisation
 
 BioProject SUB15103653
 
