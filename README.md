@@ -170,10 +170,7 @@ It outputs a file called complete_1Sfrom-282.txt that contains all BPK282 transf
 
 Asign header to sequence using [pep_file_Ld1S.py](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/pep_file_Ld1S.py) <br />
 Output file Ld1S_pep_from282.fasta contains all pep sequence transfered from BPK282 <br />
-<br />
-<br />
-<br />
-<br />
+
 Isolating only transcripts annotation from the Stringtie output. This will remove all mention of UTRs <br />
 ```
 awk '$3 == "gene" || $3 == "mRNA" || $3 == "exon" || $3 == "CDS" || $3 == ""' Ld1S_stg_filtered.transdecoder.genome.gff3 > Ld1S_stg_filtered.transdecoder.genome_short.gff3
@@ -193,25 +190,10 @@ grep -v -f blast_LdName.txt Cleaned_up_transdecoderVSBPK282_2.gff3 | head
 Use the original Stringtie output with only the "transcript" lines and the gff3 files from TransDecoder where all the lines with "ORF type complete" are isolated. <br />
 Then use [UTR_position-length](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/UTR_position-length.pl) <br />
 
-
-
-## Filtering out reads with less than 5x coverage
-
-```
-samtools depth Ld1S_Ama_monocistron_SL.bam > Ld1S_Ama_monocistron_SL_coverage.txt
-awk '$3 >=5' Ld1S_Ama_monocistron_SL_coverage.txt > Ld1S_Ama_monocistron_SL_FiltCoverage.txt
-awk '{print $1"\t"$2-1"\t"$2}' Ld1S_Ama_monocistron_SL_FiltCoverage.txt > Ld1S_Ama_monocistron_SL_FiltCoverage.bed
-bedtools intersect -abam Ld1S_Ama_monocistron_SL.bam -b Ld1S_Ama_monocistron_SL_FiltCoverage.bed > Ld1S_Ama_monocistron_SL_FiltCoverage.bam
-samtools index Ld1S_Ama_monocistron_SL_FiltCoverage.bam
-```
-
 ## Naming harmonisazion between Stringtie promastigotes and Stringtie amastigotes
 
 To match names between the different files, we used [gtf_name_transfer.pl](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/gtf_name_transfer.pl) <br />
 It will transfer the name of the promastigote stringtie onto the amastigote stringie <br />
-
-
-## Finding lncRNA in Leishmania genome
 
 ## Identifying nucleic acid motif at splicing junction
 
@@ -230,6 +212,15 @@ awk '{print $1 ":" $2-25 "-" $2+25}' 5bounderies.txt | xargs -I {} samtools faid
 Meme to find motifs 
 ```
 /usr/local/packages/meme-5.5.5/bin/meme /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_UTR/5bounderies_seq.fasta -dna -oc . -mod zoops -nmotifs 10 -maxw 25 -objfun classic -markov_order 0
+```
+## Mapping G4 onto Ld1S genome and identifying rG4 in coding vs the UTRs of transcripts
+Retreive G4 motifs from canonical motifs described in "G-Quadruplex Identification in the Genome of Protozoan Parasites Points to Naphthalene Diimide Ligands as New Antiparasitic Agents" J. Med. Chem. 2018, 61, 3, 1231–1240 doi: 10.1021/acs.jmedchem.7b01672
+```
+/usr/local/packages/ncbi-blast+-2.16.0/bin/blastn -query Lm_G4.fasta -db Ld1S_asm_db -outfmt 6 -out G4Ld1S.txt -task blastn-short -dust no -soft_masking false
+```
+create a bed file for IGV visualisation and easy manipulation
+```
+awk '{print $2 "\t" $9-1 "\t" $10 "\tMotif"}' G4Ld1S.txt > G4_Ld1S.bed
 ```
 ## Gene expression
 ```
