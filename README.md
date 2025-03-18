@@ -214,13 +214,10 @@ Meme to find motifs
 /usr/local/packages/meme-5.5.5/bin/meme /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_UTR/5bounderies_seq.fasta -dna -oc . -mod zoops -nmotifs 10 -maxw 25 -objfun classic -markov_order 0
 ```
 ## Mapping G4 onto Ld1S genome and identifying rG4 in coding vs the UTRs of transcripts
-Retreive G4 motifs from canonical motifs described in "G-Quadruplex Identification in the Genome of Protozoan Parasites Points to Naphthalene Diimide Ligands as New Antiparasitic Agents" J. Med. Chem. 2018, 61, 3, 1231–1240 doi: 10.1021/acs.jmedchem.7b01672
-```
-/usr/local/packages/ncbi-blast+-2.16.0/bin/blastn -query Lm_G4.fasta -db Ld1S_asm_db -outfmt 6 -out G4Ld1S.txt -task blastn-short -dust no -soft_masking false
-```
+Retreive G4 motifs from [canonical motifs described in "G-Quadruplex Identification in the Genome of Protozoan Parasites Points to Naphthalene Diimide Ligands as New Antiparasitic Agents"](https://bioinformatics.cruk.cam.ac.uk/G4Hunter/)![image](https://github.com/user-attachments/assets/721bd817-1a40-4355-a13d-cc6ce9e5283c) Bedrat, A., et al. (2016). "Re-evaluation of G-quadruplex propensity with G4Hunter." Nucleic Acids Res 44(4): 1746-1759. <br />
 create a bed file for IGV visualisation and easy manipulation
 ```
-awk '{print $2 "\t" $9-1 "\t" $10 "\tMotif"}' G4Ld1S.txt > G4_Ld1S.bed
+awk 'NR>1 {print $1, $2-1, $3, "G4", $6, $5}' OFS="\t" Ld1S_G4HunterSeeker.txt > Ld1S_G4HunterSeeker.bed
 ```
 ## Gene expression
 ```
