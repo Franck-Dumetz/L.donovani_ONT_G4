@@ -171,19 +171,14 @@ It outputs a file called complete_1Sfrom-282.txt that contains all BPK282 transf
 Asign header to sequence using [pep_file_Ld1S.py](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/pep_file_Ld1S.py) <br />
 Output file Ld1S_pep_from282.fasta contains all pep sequence transfered from BPK282 <br />
 
-Isolating only transcripts annotation from the Stringtie output. This will remove all mention of UTRs <br />
+Adding UTRs information and removing every annotation that is not .p1 <br />
 ```
-awk '$3 == "gene" || $3 == "mRNA" || $3 == "exon" || $3 == "CDS" || $3 == ""' Ld1S_stg_filtered.transdecoder.genome.gff3 > Ld1S_stg_filtered.transdecoder.genome_short.gff3
+agat_sp_filter_feature_by_attribute_value.pl --gff Ld1S_stg_filtered.transdecoder.genome.gff3 --attribute "Name" --value "ORF type:complete" -o filtered_ORF.gff3
+
+grep -E 'ID=[^;]+\.p1(;|$)|Parent=[^;]+\.p1(;|$)' filtered_ORF.gff3 > Final_annotation.gff3
 
 ```
-Making a new gff3 with all BPK282 transdecoder detected annotations <br />
-to only select BPK282 transferred annotation use [new_gff3_TransDecoderVS282.py](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/new_gff3_TransDecoderVS282.py) <br />
-Clean up to remove all non CDS annotation with: <br />
-```
-grep -v 3prime Cleaned_up_transdecoderVSBPK282.gff3 >  Cleaned_up_transdecoderVSBPK282_1.gff3
-grep -v 5prime Cleaned_up_transdecoderVSBPK282.gff3 >  Cleaned_up_transdecoderVSBPK282_2.gff3
-grep -v -f blast_LdName.txt Cleaned_up_transdecoderVSBPK282_2.gff3 | head
-```
+
 
 ## UTR position and length
 
