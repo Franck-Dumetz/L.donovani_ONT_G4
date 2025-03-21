@@ -14,6 +14,7 @@ Table of content: <br />
 [Finding lncRNA in Leishmania genome](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#finding-lncRNA-in-leishmania-genome) <br />
 
 Software requirements: <br />
+- BEDTools <br />
 - emboss-6.6.0 fuzznuc <br />
 - gffread-0.12.7 <br />
 - guppy-6.4.2 <br />
@@ -213,6 +214,24 @@ Retreive G4 motifs from [canonical motifs described in "G-Quadruplex Identificat
 create a bed file for IGV visualisation and easy manipulation
 ```
 awk 'NR>1 {print $1, $2-1, $3, "G4", $6, $5}' OFS="\t" Ld1S_G4HunterSeeker.txt > Ld1S_G4HunterSeeker.bed
+```
+Isolation of "CDS", "5'UTR" and "3'UTR" features from gff
+```
+grep -P '\tCDS\t' final_annotation.gff3 > CDS.gff3
+grep -P '\tfive_prime_UTR\t' final_annotation.gff3 > five_prime_UTR.gff3
+grep -P '\tthree_prime_UTR\t' final_annotation.gff3 > three_prime_UTR.gff3
+```
+Convert to bed file
+```
+cut -f1,4,5,7 CDS.gff3 | awk 'BEGIN{OFS="\t"} {print $1, $2-1, $3, ".", "0", $4}' > CDS.bed
+cut -f1,4,5,7 five_prime_UTR.gff3 | awk 'BEGIN{OFS="\t"} {print $1, $2-1, $3, ".", "0", $4}' > five_prime_UTR.bed
+cut -f1,4,5,7 three_prime_UTR.gff3 | awk 'BEGIN{OFS="\t"} {print $1, $2-1, $3, ".", "0", $4}' > three_prime_UTR.bed
+```
+Use BEDTools to find rG4 in the different sections of the transcript and get a count
+```
+bedtools intersect -a G4.bed -b CDS.bed -s -u | wc -l
+bedtools intersect -a G4.bed -b five_prime_UTR.bed -s -u | wc -l
+bedtools intersect -a G4.bed -b three_prime_UTR.bed -s -u | wc -l
 ```
 ## Gene expression
 ```
