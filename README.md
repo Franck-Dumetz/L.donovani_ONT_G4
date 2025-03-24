@@ -213,6 +213,9 @@ Meme to find motifs
 Retreive G4 motifs from [canonical motifs described in "G-Quadruplex Identification in the Genome of Protozoan Parasites Points to Naphthalene Diimide Ligands as New Antiparasitic Agents"](https://bioinformatics.cruk.cam.ac.uk/G4Hunter/)![image](https://github.com/user-attachments/assets/721bd817-1a40-4355-a13d-cc6ce9e5283c) Bedrat, A., et al. (2016). "Re-evaluation of G-quadruplex propensity with G4Hunter." Nucleic Acids Res 44(4): 1746-1759. <br />
 create a bed file for IGV visualisation and easy manipulation
 ```
+for f in *.txt; do tail -n +2 "$f"; done > Ld1S_G4HunterSeeker.txt
+```
+```
 awk 'NR>1 {print $1, $2-1, $3, "G4", $6, $5}' OFS="\t" Ld1S_G4HunterSeeker.txt > Ld1S_G4HunterSeeker.bed
 ```
 Isolation of "CDS", "5'UTR" and "3'UTR" features from gff
