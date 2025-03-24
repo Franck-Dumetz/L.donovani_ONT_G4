@@ -233,6 +233,7 @@ cut -f1,4,5,7 three_prime_UTR.gff3 | awk 'BEGIN{OFS="\t"} {print $1, $2-1, $3, "
 ```
 Use BEDTools to find rG4 in the different sections of the transcript and get a count
 ```
+input_bed=<path/to/bed>
 bedtools intersect -a G4.bed -b CDS.bed -s -u | wc -l
 bedtools intersect -a G4.bed -b five_prime_UTR.bed -s -u | wc -l
 bedtools intersect -a G4.bed -b three_prime_UTR.bed -s -u | wc -l
