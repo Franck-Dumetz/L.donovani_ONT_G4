@@ -220,9 +220,10 @@ awk 'NR>1 {print $1, $2-1, $3, "G4", $6, $5}' OFS="\t" Ld1S_G4HunterSeeker.txt >
 ```
 Isolation of "CDS", "5'UTR" and "3'UTR" features from gff
 ```
-grep -P '\tCDS\t' final_annotation.gff3 > CDS.gff3
-grep -P '\tfive_prime_UTR\t' final_annotation.gff3 > five_prime_UTR.gff3
-grep -P '\tthree_prime_UTR\t' final_annotation.gff3 > three_prime_UTR.gff3
+input_gff=<path/to/gff>
+grep -P '\tCDS\t' $input_gff > CDS.gff3
+grep -P '\tfive_prime_UTR\t' $input_gff > five_prime_UTR.gff3
+grep -P '\tthree_prime_UTR\t' $input_gff > three_prime_UTR.gff3
 ```
 Convert to bed file
 ```
