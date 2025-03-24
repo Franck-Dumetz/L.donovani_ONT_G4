@@ -20,7 +20,7 @@ Software requirements: <br />
 - guppy-6.4.2 <br />
 - feartureCounts-v2.0.6 <br />
 - interproscan <br />
-- manimap2.1 <br />
+- minimap2.1 <br />
 - meme-5.5.5 <br />
 - ncbi-blast+-2.14.0 <br />
 - samtools-1.20 <br />
