@@ -11,7 +11,6 @@ Table of content: <br />
 
 [Transcript evidence annotation and clean up](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#transcript-evidence-finding-and-clean-up) <br />
 [Finding coding sequences](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#finding-coding-sequence) <br />
-[Finding lncRNA in Leishmania genome](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#finding-lncRNA-in-leishmania-genome) <br />
 
 Software requirements: <br />
 - BEDTools <br />
