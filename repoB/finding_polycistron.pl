@@ -1,0 +1,76 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+###Finding polycystronic reads comparing a BAM file to the gff, reads that only correspond to 1 annotation will be stored in a monocistron.sam and reads overlapping with more than 1 annotation in a polycistron.sam
+
+	###First, deconstruct the gff to get a window for each gene
+
+open (IN, "/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_genome/Flye_scaffold/blast_annotation/Ld1S_blastout_header.gff");
+open (BAM, "samtools view -h /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Fuzznuc/Amastigotes/Ld1S_AxAma_ONT_induro.bam |");
+
+open (OUT1, ">/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Fuzznuc/Amastigotes/Ld1S_3ONT_Ama_monocistron.sam");
+open (OUT2, ">/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Fuzznuc/Amastigotes/Ld1S_3ONT_Ama_polycistron.sam");
+
+
+my %gene;
+
+while (<IN>) {
+	chomp;
+	my $gene_split = $_;
+	my @gff_line = split /\t/, $gene_split;
+	my $gff_chr = $gff_line[0];
+	my $gff_start = $gff_line[3];
+	my $gff_end = $gff_line[4];
+	#my $gff_strand = $gff_line[6];
+	for (my $bp = $gff_start; $bp < $gff_end; $bp++) {					###making a window from the beginning of the gene until the end but still keeping the position
+			my $position = join("_", $gff_chr ,$bp);
+			$gene{$position} = $gff_line[8];
+				#print "$position\n";
+	}	
+}
+
+
+### scanning the BAM file for transcript that have multiple CDS 
+
+my $nMono =0;
+my $nPoly = 0;
+while (<BAM>) {
+	chomp;
+	my $line = $_;			
+	if ($line =~ m/^@/) {
+		print OUT1 "$line\n";
+		print OUT2 "$line\n";
+	}		
+	else {
+		my $one = "";
+		my $test = 0; #mono
+		my @bam_line = split /\t/, $line;
+		my $read_ID = $bam_line[0];
+		my $bam_chr = $bam_line[2];
+		my $bam_start = $bam_line[3];
+		my $bam_end = $bam_start + length($bam_line[9]);
+		#print "$read_ID";
+		for (my $bp = $bam_start; $bp < $bam_end; $bp++) {
+			my $position = join("_", $bam_chr ,$bp);
+			if (defined $gene{$position}) {
+				if ($one eq "") {$one = $gene{$position}}
+				elsif ($one ne $gene{$position}) {$test = 1}   #poly
+			}
+		}	
+		if ($test == 0) {
+			print OUT1 "$line\n";
+			$nMono++;	
+		}
+		elsif ($test != 0) {
+			print OUT2 "$line\n";
+			$nPoly++;
+		}
+	}
+}	
+
+close IN;
+close BAM;
+
+print STDERR "$nMono monocistronic\n$nPoly polycistronic\n";
+exit;
