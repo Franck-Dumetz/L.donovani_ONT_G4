@@ -155,30 +155,31 @@ transdecoder-5.7.1/util/cdna_alignment_orf_to_genome_orf.pl Transdecoder_transcr
 TransDecoder outputs a lot of false positive. <br />
 Transdcoder outputs 4 different files: .bed, .cds, .pep, .gff3 <br />
 First, use the .pep file to compare with BPK282 using blatp: <br />
+create a database (makes blastp faster)
 ```
-/usr/local/packages/ncbi-blast+-2.14.0/bin/blastp -subject Transdecoder_transcripts.fasta.transdecoder.pep -query TriTrypDB-66_LdonovaniBPK282A1_AnnotatedProteins.fasta -outfmt 6 -out blastp.out
+/usr/local/packages/ncbi-blast+-2.16.0/bin/makeblastdb \
+  -in TriTrypDB-68_LdonovaniBPK282A1_AnnotatedProteins.fasta \
+  -dbtype prot \
+  -out TriTrypDB-68_LdonovaniBPK282A1_AnnotatedProteins
 ```
-Then only keep all lines with a match value >95% in a blastp_filtered.out <br />
-Isolate the headers from the .pep file <br />
 ```
-awk '/^>/ { print $0 > "pep-headers.txt"; next } { print $0 > "pep-sequences.txt" }' Transdecoder_transcripts.fasta.transdecoder.pep
-
-awk '{print S1}' blast_filtered.out > blast_LdName.txt
+/usr/local/packages/ncbi-blast+-2.16.0/bin/blastp \
+  -query Ld1S_Transdecoder_transcripts.fasta.transdecoder.pep \
+  -db TriTrypDB-66_LdonovaniBPK282A1_AnnotatedProteins \
+  -outfmt 6 \
+  -num_threads 8 \
+  -out ./blastp_cds282vsLd1s.out
 ```
-Use [Match_pep2blastp.py](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/match_pep2blastp.py) <br /> 
-It outputs a file called complete_1Sfrom-282.txt that contains all BPK282 transfered to Ld1S (6201 protein transfered) <br />
-
-Asign header to sequence using [pep_file_Ld1S.py](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/pep_file_Ld1S.py) <br />
-Output file Ld1S_pep_from282.fasta contains all pep sequence transfered from BPK282 <br />
-
-Adding UTRs information and removing every annotation that is not .p1 <br />
 ```
-agat_sp_filter_feature_by_attribute_value.pl --gff Ld1S_stg_filtered.transdecoder.genome.gff3 --attribute "Name" --value "ORF type:complete" -o filtered_ORF.gff3
-
-grep -E 'ID=[^;]+\.p1(;|$)|Parent=[^;]+\.p1(;|$)' filtered_ORF.gff3 > Final_annotation.gff3
-
+awk '$3 >= 90' blastp_cds282vsLd1s.out > blastp_cds282vsLd1s.filtered.txt
 ```
-
+Then only keep all lines with a match value >90% in a blastp_cds282vsLd1s.out (8187 protein transfered)  <br />
+Now only isolate the first column of that file to filter the gff made by TransDecoder
+```
+awk '{print $1}' 250630_blastp_cds282vsLd1s.filtered.txt > 250630_Ld1S_names_from282.txt
+```
+then use (gff3_filtering.py)[https://github.com/Franck-Dumetz/L.donovani_ONT_G4/blob/main/Annotation/gff3_filtering.py] to remove from the Transdecoder gff3 all the annotations from genes that aren't 90% identical to BPK282<br />
+In total 8187 proteins were transfered with the transdecoder features <br />
 
 ## UTR position and length
 
