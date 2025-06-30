@@ -188,6 +188,12 @@ agat_sp_compare_two_annotations.pl \
     --gff2 TriTrypDB-68_LdonovaniBPK282A1.gff \
     -o 250630_Ld1S_282_gffComparison.tsv
 ```
+finding differences between the two strains 
+```
+agat_sp_statistics.pl --gff TriTrypDB-68_LdonovaniBPK282A1.gff > 282_statsOriginal.txt
+agat_sp_statistics.pl --gff 250630_Ld1S_stg_filtered_transdecoder.gff3 > Ld1S_statsOriginal.txt
+diff Ld1S_statsOriginal.txt 282_statsOriginal.txt > Ld1S_282diff.txt
+```
 
 ## UTR position and length
 
