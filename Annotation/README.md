@@ -13,6 +13,7 @@ Table of content: <br />
 [Finding coding sequences](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#finding-coding-sequence) <br />
 
 Software requirements: <br />
+- [AGAT] (https://github.com/NBISweden/AGAT) <br />
 - BEDTools <br />
 - emboss-6.6.0 fuzznuc <br />
 - gffread-0.12.7 <br />
@@ -180,6 +181,13 @@ awk '{print $1}' 250630_blastp_cds282vsLd1s.filtered.txt > 250630_Ld1S_names_fro
 ```
 then use (gff3_filtering.py)[https://github.com/Franck-Dumetz/L.donovani_ONT_G4/blob/main/Annotation/gff3_filtering.py] to remove from the Transdecoder gff3 all the annotations from genes that aren't 90% identical to BPK282<br />
 In total 8187 proteins were transfered with the transdecoder features <br />
+Comparing LDBPK282 and Ld1S gff using agat <br />
+```
+agat_sp_compare_two_annotations.pl \
+    --gff1 250630_Ld1S_stg_filtered_transdecoder.gff3 \
+    --gff2 TriTrypDB-68_LdonovaniBPK282A1.gff \
+    -o 250630_Ld1S_282_gffComparison.tsv
+```
 
 ## UTR position and length
 
