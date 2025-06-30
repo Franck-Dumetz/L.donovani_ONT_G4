@@ -13,7 +13,7 @@ Table of content: <br />
 [Finding coding sequences](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/README.md#finding-coding-sequence) <br />
 
 Software requirements: <br />
-- [AGAT] (https://github.com/NBISweden/AGAT) <br />
+- [AGAT](https://github.com/NBISweden/AGAT) <br />
 - BEDTools <br />
 - emboss-6.6.0 fuzznuc <br />
 - gffread-0.12.7 <br />
