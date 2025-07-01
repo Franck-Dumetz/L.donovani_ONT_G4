@@ -223,3 +223,9 @@ Meme to find motifs
 ```
 /usr/local/packages/meme-5.5.5/bin/meme /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_UTR/5bounderies_seq.fasta -dna -oc . -mod zoops -nmotifs 10 -maxw 25 -objfun classic -markov_order 0
 ```
+### tRNA detection
+```
+assembly=path_to_assembly
+
+/usr/local/packages/trnascan-se-2.0.3/bin/eufindtRNA -r $assembly > Ld1S_tRNA_strict.csv 
+```
