@@ -229,3 +229,9 @@ assembly=path_to_assembly
 
 /usr/local/packages/trnascan-se-2.0.3/bin/eufindtRNA -r $assembly > Ld1S_tRNA_strict.csv 
 ```
+### rRNA mapping
+```
+assembly=path_to_assembly
+
+/usr/local/packages/ncbi-blast+-2.14.0/bin/blastn -query LdBPK_rRNA.fasta -subject $assembly -outfmt 6 -out ./rRNA_tblastn.out
+```
