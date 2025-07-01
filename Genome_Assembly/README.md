@@ -159,12 +159,6 @@ ggplot(Ld1_cov_sum, aes(x=window, y=sum_cov)) +
   geom_hline(yintercept = mean(Ld36_cov_sum$sum_cov), color="red")
 ```
 
-### tRNA detection
-```
-assembly=path_to_assembly
-
-/usr/local/packages/trnascan-se-2.0.3/bin/eufindtRNA -r $assembly > Ld1S_tRNA_strict.csv 
-```
 
 ## BUSCO
 ```
