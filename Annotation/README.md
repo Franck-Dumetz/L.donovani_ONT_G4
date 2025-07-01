@@ -223,15 +223,27 @@ Meme to find motifs
 ```
 /usr/local/packages/meme-5.5.5/bin/meme /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_UTR/5bounderies_seq.fasta -dna -oc . -mod zoops -nmotifs 10 -maxw 25 -objfun classic -markov_order 0
 ```
+## Making a ggf form the Transdecoder output gff
 ### tRNA detection
 ```
 assembly=path_to_assembly
 
 /usr/local/packages/trnascan-se-2.0.3/bin/eufindtRNA -r $assembly > Ld1S_tRNA_strict.csv 
 ```
-### rRNA mapping
+### rRNA mapping and make a gff
 ```
 assembly=path_to_assembly
 
 /usr/local/packages/ncbi-blast+-2.14.0/bin/blastn -query LdBPK_rRNA.fasta -subject $assembly -outfmt 6 -out ./rRNA_tblastn.out
 ```
+### Merge all the gff into one
+```
+conda activate agat
+/usr/bin/perl /opt/anaconda3/envs/agat/bin/agat_sp_merge_annotations.pl \
+    --gff Ld1s_rRNA.gff \ 
+    --gff Ld1S_tRNA_strict.gff \
+    --gff 250630_Ld1S_stg_filtered_transdecoder.gff3
+    -o Ld1S_full_annotation.gff
+```
+
+Use [add_attribute2gff.py](https://github.com/Franck-Dumetz/L.donovani_ONT_G4/blob/main/Annotation/add_attribute2gff.py) to add the LdBPK282 annotation in attribute of the gff <br />
