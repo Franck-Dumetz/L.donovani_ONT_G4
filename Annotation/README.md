@@ -247,3 +247,14 @@ conda activate agat
 ```
 
 Use [add_attribute2gff.py](https://github.com/Franck-Dumetz/L.donovani_ONT_G4/blob/main/Annotation/add_attribute2gff.py) to add the LdBPK282 annotation in attribute of the gff <br />
+### Finding pseudogenes
+convert the genome to Genbank <br />
+```
+emblmygff3 \
+    -g Ld1S_assembly_final.fasta \
+    -o Ld1S_final.gbk \
+    -l LdBPK \
+    --translate \
+    Ld1S_full_ortho.gff \
+    Ld1S_assembly_final.fasta
+```
