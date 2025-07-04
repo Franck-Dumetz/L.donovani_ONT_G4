@@ -194,7 +194,16 @@ agat_sp_statistics.pl --gff TriTrypDB-68_LdonovaniBPK282A1.gff > 282_statsOrigin
 agat_sp_statistics.pl --gff 250630_Ld1S_stg_filtered_transdecoder.gff3 > Ld1S_statsOriginal.txt
 diff Ld1S_statsOriginal.txt 282_statsOriginal.txt > Ld1S_282diff.txt
 ```
+finding genes that are between 70 and 90 of homology with LdBPK282 <br />
+```
+awk '$3 >= 70 && $3 < 90' blastp_cds282vsLd1s.out > genes_70_90.out
+awk '{print $1}' orthologs.tsv > orthologs_col1.tsv
 
+awk '
+    NR==FNR { exclude[$1]; next }
+    !($1 in exclude)
+' orthologs_col1.tsv genes_70_90.out > genes_70_90_filtered.out
+```
 ## UTR position and length
 
 Use the original Stringtie output with only the "transcript" lines and the gff3 files from TransDecoder where all the lines with "ORF type complete" are isolated. <br />
