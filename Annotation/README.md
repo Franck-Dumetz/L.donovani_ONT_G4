@@ -179,7 +179,7 @@ Now only isolate the first column of that file to filter the gff made by TransDe
 ```
 awk '{print $1}' 250630_blastp_cds282vsLd1s.filtered.txt > 250630_Ld1S_names_from282.txt
 ```
-then use (gff3_filtering.py)[https://github.com/Franck-Dumetz/L.donovani_ONT_G4/blob/main/Annotation/gff3_filtering.py] to remove from the Transdecoder gff3 all the annotations from genes that aren't 90% identical to BPK282<br />
+then use [gff3_filtering.py](https://github.com/Franck-Dumetz/L.donovani_ONT_G4/blob/main/Annotation/gff3_filtering.py) to remove from the Transdecoder gff3 all the annotations from genes that aren't 90% identical to BPK282<br />
 In total 8187 proteins were transfered with the transdecoder features <br />
 Comparing LDBPK282 and Ld1S gff using agat <br />
 ```
