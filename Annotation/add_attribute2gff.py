@@ -3,7 +3,7 @@
 import sys
 
 if len(sys.argv) != 4:
-    print("Usage: python add_orthologs.py orthologs.tsv input.gff output.gff")
+    print("Usage: python add_attribute2gff.py attibutes_matchingg.tsv input.gff output.gff")
     sys.exit(1)
 
 orthologs_file = sys.argv[1]
