@@ -204,10 +204,6 @@ awk '
     !($1 in exclude)
 ' orthologs_col1.tsv genes_70_90.out > genes_70_90_filtered.out
 ```
-## UTR position and length
-
-Use the original Stringtie output with only the "transcript" lines and the gff3 files from TransDecoder where all the lines with "ORF type complete" are isolated. <br />
-Then use [UTR_position-length](https://github.com/Franck-Dumetz/Ldonovani_UTR_mapping/blob/main/UTR_position-length.pl) <br />
 
 ## Naming harmonisazion between Stringtie promastigotes and Stringtie amastigotes
 
