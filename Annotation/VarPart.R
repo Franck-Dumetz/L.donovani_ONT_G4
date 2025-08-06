@@ -36,8 +36,14 @@ names(eta_sq) <- rownames(anova_table)
 # --- Print and visualize ---
 print(round(eta_sq, 3))
 
+# Clean up labels: replace underscores with spaces
+clean_labels <- gsub("_", " ", names(eta_sq))
+
 barplot(eta_sq,
-        col = c("orangered", "steelblue", "darkgreen", "grey"),
+        col = c("orangered", "steelblue", "red", "grey", "darkgreen"),
         ylab = "Proportion of Variance Explained",
-        main = "Fixed Effects Variance Partitioning",
-        las = 2)
+        #main = "Fixed Effects Variance Partitioning",
+        las = 1,                     # Rotate x labels vertically
+        ylim = c(0, 1),              # Extend y-axis to full range (0 to 1)
+        cex.names = 0.9,            # Slightly shrink font if needed
+        names.arg = clean_labels)  # Ensure all labels are printed
