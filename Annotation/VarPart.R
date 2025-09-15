@@ -7,8 +7,8 @@ library(car)
 library(tidyverse)
 
 # --- Load data ---
-expr <- read.delim("/Users/fdumetz/Desktop/Desktop - fdumetzm4-osx/Ld1S_UTR/PTU_stat/transcript_counts_newgff.txt")
-features <- read.delim("/Users/fdumetz/Desktop/Desktop - fdumetzm4-osx/Ld1S_UTR/PTU_stat/gene_features.tsv")
+expr <- read.delim("PATH/transcript_counts_newgff.txt")
+features <- read.delim("PATH/gene_features.tsv")
 
 # --- Merge and prepare ---
 dat <- merge(expr, features, by = "gene_id")
