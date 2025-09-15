@@ -7,9 +7,9 @@ use strict;
 use warnings;
 
 
-open (CDS, "/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/Ld1S_Transdecoder_completeORF_stranded2.cds" |);
+open (CDS, "Ld1S_Transdecoder_completeORF_stranded2.cds" |);
 
-open (OUT, ">/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/Ld1S_transdecoder_monocistron_coord.txt" |);
+open (OUT, ">PAHT/Ld1S_transdecoder_monocistron_coord.txt" |);
 
 
 my %stringtie;              # $stringtie{"Ld1S.000010.1"} = No of ORFs
