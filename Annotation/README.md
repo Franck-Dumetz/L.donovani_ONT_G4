@@ -117,11 +117,11 @@ meme 50first_nuc_SL.fasta -dna -oc . -mod zoops -nmotifs 5 -minw 6 -maxw 50
 ### Read lenght in the dataset
 Longest read 
 ```
-samtools view /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Fuzznuc/Ld1S_3ONT_monocistron.bam | awk '{print length($10)}' | sort -n | head -1
+samtools view Ld1S_3ONT_monocistron.bam | awk '{print length($10)}' | sort -n | head -1
 ```
 Shortest read 
 ```
-samtools view /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Fuzznuc/Ld1S_3ONT_monocistron.bam | awk '{print length($10)}' | sort -nr | head -1
+samtools view Ld1S_3ONT_monocistron.bam | awk '{print length($10)}' | sort -nr | head -1
 ```
 ## Transcript evidence finding and clean up
 ```
@@ -226,20 +226,20 @@ awk '{print $1 ":" $2-25 "-" $2+25}' 5bounderies.txt | xargs -I {} samtools faid
 ```
 Meme to find motifs 
 ```
-/usr/local/packages/meme-5.5.5/bin/meme /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_UTR/5bounderies_seq.fasta -dna -oc . -mod zoops -nmotifs 10 -maxw 25 -objfun classic -markov_order 0
+meme-5.5.5/bin/meme 5bounderies_seq.fasta -dna -oc . -mod zoops -nmotifs 10 -maxw 25 -objfun classic -markov_order 0
 ```
 ## Making a ggf form the Transdecoder output gff
 ### tRNA detection
 ```
 assembly=path_to_assembly
 
-/usr/local/packages/trnascan-se-2.0.3/bin/eufindtRNA -r $assembly > Ld1S_tRNA_strict.csv 
+trnascan-se-2.0.3/bin/eufindtRNA -r $assembly > Ld1S_tRNA_strict.csv 
 ```
 ### rRNA mapping and make a gff
 ```
 assembly=path_to_assembly
 
-/usr/local/packages/ncbi-blast+-2.14.0/bin/blastn -query LdBPK_rRNA.fasta -subject $assembly -outfmt 6 -out ./rRNA_tblastn.out
+ncbi-blast+-2.14.0/bin/blastn -query LdBPK_rRNA.fasta -subject $assembly -outfmt 6 -out ./rRNA_tblastn.out
 ```
 ### Merge all the gff into one
 ```
