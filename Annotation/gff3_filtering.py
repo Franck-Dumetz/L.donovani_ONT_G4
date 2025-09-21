@@ -1,10 +1,10 @@
 keep_ids = set(
     line.strip()
-    for line in open("/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/250630_Ld1S_names_from282.txt")
+    for line in open("/PATH/250630_Ld1S_names_from282.txt")
 )
 
-with open("/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/Ld1S_stg_filtered.transdecoder.genome.gff3") as infile, \
-     open("/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/Ld1S_stg_filtered_transdecoder.gff3", "w") as outfile:
+with open("/PATH/Ld1S_stg_filtered.transdecoder.genome.gff3") as infile, \
+     open("/PATH/Ld1S_stg_filtered_transdecoder.gff3", "w") as outfile:
     
     for line in infile:
         if line.startswith("#"):
