@@ -6,11 +6,11 @@
 use strict;
 use warnings;
 
-open (SGT, "/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/Ld1S_stg_filtered_final_renamed_transcriptONLY.txt");
-open (MONO, "/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/Ld1S_transdecoder_monocistron_coord.txt");
-open (BAM, "samtools view /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_ONT/Annotation/Amastigotes/Ld1S_AxAma_ONT_induro.bam |");
+open (SGT, "/PATH/Ld1S_stg_filtered_final_renamed_transcriptONLY.txt");
+open (MONO, "/PATH/Ld1S_transdecoder_monocistron_coord.txt");
+open (BAM, "samtools view /PATH/Ld1S_AxAma_ONT_induro.bam |");
 
-open (OUT, ">/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/Ama_isoform_wiggle100.txt");
+open (OUT, ">/PATH/Ama_isoform_wiggle100.txt");
 
 my %transcript;
 
