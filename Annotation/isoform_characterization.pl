@@ -5,9 +5,9 @@
 use strict;
 use warnings;
 
-open (ISO, "/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/Pro_iso.txt");
+open (ISO, "/PATH/Pro_iso.txt");
 
-open (OUT, ">/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/Pro_iso_count.txt");
+open (OUT, ">/PATH/Pro_iso_count.txt");
 
 my $last = "";
 
