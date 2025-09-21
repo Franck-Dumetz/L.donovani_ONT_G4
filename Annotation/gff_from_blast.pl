@@ -3,9 +3,9 @@
 
 use strict;
 
-open (IN, "/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_genome/Flye_scaffold/blast_annotation/tblastn.out"); 
+open (IN, "/PATH/tblastn.out"); 
 
-open (OUT, ">/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_genome/Flye_scaffold/blast_annotation/Ld1S_blastout_p89_m98.gff");
+open (OUT, ">/PATH/Ld1S_blastout_p89_m98.gff");
 #print OUT "GeneID\tChr\tStart\tEnd\tStrand\tDefinition\n" ### this line writes a header
 
 my $last = "";
