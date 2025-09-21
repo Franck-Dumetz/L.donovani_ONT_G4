@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 # File paths for the input files and output file
-gff3_file_path = '/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/Ld1S_stg_filtered.transdecoder.genome_short.gff3'
-blast_file_path = '/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/blast_LdName.txt'
+gff3_file_path = '/PATH/Ld1S_stg_filtered.transdecoder.genome_short.gff3'
+blast_file_path = '/PATH/blast_LdName.txt'
 output_gff3_file = 'extracted_gff3_records.gff3'
 
 # Extracting the IDs from blast_LdName.txt
