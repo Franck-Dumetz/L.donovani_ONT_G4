@@ -6,11 +6,11 @@ use strict;
 
 	###First, deconstruct the gff to get a window for each gene
 
-open (IN, "/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld1S_genome/Flye_scaffold/blast_annotation/Ld1S_blastout_header.gff");
-open (BAM, "samtools view -h /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Fuzznuc/Amastigotes/Ld1S_AxAma_ONT_induro.bam |");
+open (IN, "/PATH/Ld1S_blastout_header.gff");
+open (BAM, "samtools view -h /PATH/Ld1S_AxAma_ONT_induro.bam |");
 
-open (OUT1, ">/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Fuzznuc/Amastigotes/Ld1S_3ONT_Ama_monocistron.sam");
-open (OUT2, ">/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Fuzznuc/Amastigotes/Ld1S_3ONT_Ama_polycistron.sam");
+open (OUT1, ">/PATH/Ld1S_3ONT_Ama_monocistron.sam");
+open (OUT2, ">/PATH/Ld1S_3ONT_Ama_polycistron.sam");
 
 
 my %gene;
