@@ -29,7 +29,7 @@ bedtools intersect -a $input_bed -b three_prime_UTR.bed -s -u | wc -l
 ```
 ## Gene expression
 ```
-featureCounts -s 2 -T 8 -a /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step4_final_removal/Ld1S_annotation_filtered_final_final.gtf -o Ld_3ONT_count.txt /local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Fuzznuc/Ld1S_3ONT_monocistron.bam
+featureCounts -s 2 -T 8 -a /PATH/Ld1S_annotation_filtered_final_final.gtf -o Ld_3ONT_count.txt /PATH/Ld1S_3ONT_monocistron.bam
 ```
 ## Gene ontology analysis
 Prepare the data
