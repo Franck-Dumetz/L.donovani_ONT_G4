@@ -3,9 +3,9 @@
 ### Matching pep headers to blastp output
 
 # File paths for the input files
-blast_file_path = '/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/blast_LdName.txt'
-pep_headers_path = '/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/pep-headers.txt'
-output_file_path = '/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/complete_1Sfrom-282.txt'  # Output file
+blast_file_path = '/PATH/blast_LdName.txt'
+pep_headers_path = '/PATH/pep-headers.txt'
+output_file_path = '/PATH/complete_1Sfrom-282.txt'  # Output file
 
 
 # Load the blast IDs from blast_LdName.txt into a set
