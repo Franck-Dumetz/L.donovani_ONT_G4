@@ -5,10 +5,10 @@
 use strict;
 use warnings;
 
-open (PRO, "/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Step2_Annotation_curation/Step5_Transdecoder/Stringtie_renamed/Ld1S_stg_filtered_final_renamed.gtf");
-open (AMA, "/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Fuzznuc/Amastigotes/Stringtie/Ama_monocistron_SL_FiltCov.gtf");
+open (PRO, "/PATH/Ld1S_stg_filtered_final_renamed.gtf");
+open (AMA, "/PATH/Ama_monocistron_SL_FiltCov.gtf");
 
-open (OUT, ">/local/projects-t3/SerreDLab-3/fdumetz/Leishmania/Ld_annotation/Fuzznuc/Amastigotes/Stringtie/Ama_monocistron_SL_FiltCov_renamed.gtf");
+open (OUT, ">/PATH/Ama_monocistron_SL_FiltCov_renamed.gtf");
 
 my %gene;
 
