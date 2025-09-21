@@ -1,5 +1,5 @@
-input_file = '/Users/fdumetz/Desktop/Leish_lncRNA/Ld1S_stg_filtered.transdecoder.genome.gff3'
-output_file = '/Users/fdumetz/Desktop/Leish_lncRNA/Ld1S_stg_filtered.transdecoder.genome.fixed.gff3'
+input_file = '/PATH/Ld1S_stg_filtered.transdecoder.genome.gff3'
+output_file = '/PATH/Ld1S_stg_filtered.transdecoder.genome.fixed.gff3'
 
 with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:
     for line in infile:
