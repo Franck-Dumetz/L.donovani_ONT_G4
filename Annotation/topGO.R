@@ -5,11 +5,11 @@ library(topGO)
 
 # ---- Step 1: Load Gene Lists ----
 # Read gene lists for two datasets
-dataset1_genes <- read.table("/Volumes/projects-t3/SerreDLab-3/fdumetz/Leishmania/GO_analysis/AMA_spe_GO_clean2.txt", stringsAsFactors = FALSE)$V1
-dataset2_genes <- read.table("/Volumes/projects-t3/SerreDLab-3/fdumetz/Leishmania/GO_analysis/PRO_spe_GO_clean2.txt", stringsAsFactors = FALSE)$V1
+dataset1_genes <- read.table("path/AMA_spe_GO_clean2.txt", stringsAsFactors = FALSE)$V1
+dataset2_genes <- read.table("path/PRO_spe_GO_clean2.txt", stringsAsFactors = FALSE)$V1
 
 # Read background gene list (all detected genes in the experiment)
-all_genes <- read.table("/Volumes/projects-t3/SerreDLab-3/fdumetz/Leishmania/GO_analysis/All_GO_clean2.txt", stringsAsFactors = FALSE)$V1
+all_genes <- read.table("path/All_GO_clean2.txt", stringsAsFactors = FALSE)$V1
 
 # ---- Step 2: Create Gene Factor Lists for `topGO` ----
 # Initialize all genes as not significant (0), mark dataset genes as significant (1)
@@ -20,7 +20,7 @@ geneList2 <- factor(as.integer(all_genes %in% dataset2_genes))
 names(geneList2) <- all_genes
 
 # Load gene-to-GO mappings (Format: gene_ID -> GO terms)
-gene2GO <- readMappings(file = "/Volumes/projects-t3/SerreDLab-3/fdumetz/Leishmania/GO_analysis/onlyp1_onlyGO_clean2.txt")
+gene2GO <- readMappings(file = "path/onlyp1_onlyGO_clean2.txt")
 
 # Create `topGOdata` objects for biological process (BP) ontology
 GOdata1 <- new("topGOdata", ontology = "BP", allGenes = geneList1, annot = annFUN.gene2GO, gene2GO = gene2GO)
