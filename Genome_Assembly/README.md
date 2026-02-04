@@ -43,13 +43,6 @@ out_dir=path_to_out_directory
 /usr/local/packages/flye-2.9/bin/flye --pacbio-hifi $ccs_reads --genome-size 33m --out-dir $out_dir -t 16
 ```
 
-   ### Using Canu
-
-```
-ccs_reads=path_to_ccs_reads
-
-/usr/local/packages/canu-2.1.1/bin/canu -assemble -pacbio-hifi $ccs_reads
-```
 ### Geneal coverage
 ```
 samtools depth -a Reads2assembly.bam | awk '{sum+=$3} END {print sum/NR}'
